@@ -5,22 +5,21 @@
 package dao;
 
 import java.util.List;
-import models.Siswa;
+import models.Guru;
 
 /**
  *
  * @author nyaw
  */
-public interface SiswaDao {
+public interface GuruDao {
 
-    public boolean insert(Siswa siswa);
+    public boolean insert(Guru guru);
 
-    public boolean update(Siswa siswa);
+    public boolean update(Guru guru);
 
-    public boolean delete(String nisn);
+    public boolean delete(String nip);
 
-    public Siswa getSiswaByNisn(String nisn);
+    public Guru getGuruByNip(String nip);
 
-    public List<Siswa> getAllSiswa();
-
+    public List<Guru> getAllGuru();
 }
