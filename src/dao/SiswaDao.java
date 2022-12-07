@@ -17,9 +17,9 @@ public interface SiswaDao {
 
     public boolean update(Siswa s);
 
-    public boolean delete(String nim);
+    public boolean delete(String nisn);
 
-    public Siswa getSiswaByNim(String nim);
+    public Siswa getSiswaByNisn(String nisn);
 
     public List<Siswa> getAllSiswa();
 

@@ -8,16 +8,31 @@ package models;
  *
  * @author nyaw
  */
-public class Siswa {
+public class Siswa extends Orang {
 
-    private int nim;
+    private String nisn;
+    private JadwalPelajaran[] jadwalPelajaran;
 
-    public int getNim() {
-        return nim;
+    public Siswa(String nisn, JadwalPelajaran[] jadwalPelajaran, String nama, String jenisKelamin, String alamat, String noTelp) {
+        super(nama, jenisKelamin, alamat, noTelp);
+        this.nisn = nisn;
+        this.jadwalPelajaran = jadwalPelajaran;
     }
 
-    public void setNim(int nim) {
-        this.nim = nim;
+    public String getNisn() {
+        return nisn;
+    }
+
+    public void setNisn(String nisn) {
+        this.nisn = nisn;
+    }
+
+    public JadwalPelajaran[] getJadwalPelajaran() {
+        return jadwalPelajaran;
+    }
+
+    public void setJadwalPelajaran(JadwalPelajaran[] jadwalPelajaran) {
+        this.jadwalPelajaran = jadwalPelajaran;
     }
 
 }
