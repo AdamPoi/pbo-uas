@@ -20,8 +20,8 @@ public interface JadwalPelajaranDao {
 
     public boolean delete(String kode) throws SQLException;
 
-    public JadwalPelajaran getJadwalPelajaranByKode(String kode) throws SQLException;
+    public JadwalPelajaran getByKode(String kode) throws SQLException;
 
-    public List<JadwalPelajaran> getAllJadwalPelajaran() throws SQLException;
+    public List<JadwalPelajaran> getAll() throws SQLException;
 
 }

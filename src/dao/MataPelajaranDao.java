@@ -20,8 +20,8 @@ public interface MataPelajaranDao {
 
     public boolean delete(String kode) throws SQLException;
 
-    public MataPelajaran getMataPelajaranByKode(String kode) throws SQLException;
+    public MataPelajaran getByKode(String kode) throws SQLException;
 
-    public List<MataPelajaran> getAllMataPelajaran() throws SQLException;
+    public List<MataPelajaran> getAll() throws SQLException;
 
 }

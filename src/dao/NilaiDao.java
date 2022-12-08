@@ -20,7 +20,7 @@ public interface NilaiDao {
 
     public boolean delete(int id) throws SQLException;
 
-    public Nilai getNilaiById(int id) throws SQLException;
+    public Nilai getById(int id) throws SQLException;
 
-    public List<Nilai> getAllNilai() throws SQLException;
+    public List<Nilai> getAll() throws SQLException;
 }

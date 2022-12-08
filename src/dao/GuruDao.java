@@ -20,7 +20,7 @@ public interface GuruDao {
 
     public boolean delete(String nip) throws SQLException;
 
-    public Guru getGuruByNip(String nip) throws SQLException;
+    public Guru getByNip(String nip) throws SQLException;
 
-    public List<Guru> getAllGuru() throws SQLException;
+    public List<Guru> getAll() throws SQLException;
 }

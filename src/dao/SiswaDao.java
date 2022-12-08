@@ -20,8 +20,8 @@ public interface SiswaDao {
 
     public boolean delete(String nisn) throws SQLException;
 
-    public Siswa getSiswaByNisn(String nisn) throws SQLException;
+    public Siswa getByNis(String nis) throws SQLException;
 
-    public List<Siswa> getAllSiswa() throws SQLException;
+    public List<Siswa> getAll() throws SQLException;
 
 }

@@ -20,7 +20,7 @@ public interface AdminDao {
 
     public boolean delete(String idAdmin) throws SQLException;
 
-    public Admin getAdminById(String idAdmin) throws SQLException;
+    public Admin getById(String idAdmin) throws SQLException;
 
-    public List<Admin> getAllAdmin() throws SQLException;
+    public List<Admin> getAll() throws SQLException;
 }

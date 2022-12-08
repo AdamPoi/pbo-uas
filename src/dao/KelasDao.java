@@ -20,7 +20,7 @@ public interface KelasDao {
 
     public boolean delete(String kodeKelas) throws SQLException;
 
-    public Kelas getKelasByKodeKelas(String kodeKelas) throws SQLException;
+    public Kelas getByKode(String kodeKelas) throws SQLException;
 
-    public List<Kelas> getAllKelas() throws SQLException;
+    public List<Kelas> getAll() throws SQLException;
 }
