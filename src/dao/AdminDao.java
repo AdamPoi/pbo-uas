@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import models.Admin;
 
@@ -13,13 +14,13 @@ import models.Admin;
  */
 public interface AdminDao {
 
-    public boolean insert(Admin admin);
+    public boolean insert(Admin admin) throws SQLException;
 
-    public boolean update(Admin admin);
+    public boolean update(Admin admin) throws SQLException;
 
-    public boolean delete(String idAdmin);
+    public boolean delete(String idAdmin) throws SQLException;
 
-    public Admin getAdminById(String idAdmin);
+    public Admin getAdminById(String idAdmin) throws SQLException;
 
-    public List<Admin> getAllAdmin();
+    public List<Admin> getAllAdmin() throws SQLException;
 }

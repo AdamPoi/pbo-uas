@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import models.JadwalPelajaran;
 
@@ -13,14 +14,14 @@ import models.JadwalPelajaran;
  */
 public interface JadwalPelajaranDao {
 
-    public boolean insert(JadwalPelajaran jadwalPelajaran);
+    public boolean insert(JadwalPelajaran jadwalPelajaran) throws SQLException;
 
-    public boolean update(JadwalPelajaran jadwalPelajaran);
+    public boolean update(JadwalPelajaran jadwalPelajaran) throws SQLException;
 
-    public boolean delete(String kode);
+    public boolean delete(String kode) throws SQLException;
 
-    public JadwalPelajaran getJadwalPelajaranByKode(String kode);
+    public JadwalPelajaran getJadwalPelajaranByKode(String kode) throws SQLException;
 
-    public List<JadwalPelajaran> getAllJadwalPelajaran();
+    public List<JadwalPelajaran> getAllJadwalPelajaran() throws SQLException;
 
 }

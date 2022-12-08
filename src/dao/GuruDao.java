@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import models.Guru;
 
@@ -13,13 +14,13 @@ import models.Guru;
  */
 public interface GuruDao {
 
-    public boolean insert(Guru guru);
+    public boolean insert(Guru guru) throws SQLException;
 
-    public boolean update(Guru guru);
+    public boolean update(Guru guru) throws SQLException;
 
-    public boolean delete(String nip);
+    public boolean delete(String nip) throws SQLException;
 
-    public Guru getGuruByNip(String nip);
+    public Guru getGuruByNip(String nip) throws SQLException;
 
-    public List<Guru> getAllGuru();
+    public List<Guru> getAllGuru() throws SQLException;
 }

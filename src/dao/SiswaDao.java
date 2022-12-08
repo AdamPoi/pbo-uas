@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import models.Siswa;
 
@@ -13,14 +14,14 @@ import models.Siswa;
  */
 public interface SiswaDao {
 
-    public boolean insert(Siswa siswa);
+    public boolean insert(Siswa siswa) throws SQLException;
 
-    public boolean update(Siswa siswa);
+    public boolean update(Siswa siswa) throws SQLException;
 
-    public boolean delete(String nisn);
+    public boolean delete(String nisn) throws SQLException;
 
-    public Siswa getSiswaByNisn(String nisn);
+    public Siswa getSiswaByNisn(String nisn) throws SQLException;
 
-    public List<Siswa> getAllSiswa();
+    public List<Siswa> getAllSiswa() throws SQLException;
 
 }

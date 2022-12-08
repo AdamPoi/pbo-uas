@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import models.MataPelajaran;
 
@@ -13,14 +14,14 @@ import models.MataPelajaran;
  */
 public interface MataPelajaranDao {
 
-    public boolean insert(MataPelajaran mataPelajaran);
+    public boolean insert(MataPelajaran mataPelajaran) throws SQLException;
 
-    public boolean update(MataPelajaran mataPelajaran);
+    public boolean update(MataPelajaran mataPelajaran) throws SQLException;
 
-    public boolean delete(String kode);
+    public boolean delete(String kode) throws SQLException;
 
-    public MataPelajaran getMataPelajaranByKode(String kode);
+    public MataPelajaran getMataPelajaranByKode(String kode) throws SQLException;
 
-    public List<MataPelajaran> getAllMataPelajaran();
+    public List<MataPelajaran> getAllMataPelajaran() throws SQLException;
 
 }

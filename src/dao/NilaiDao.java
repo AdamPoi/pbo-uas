@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import models.Nilai;
 
@@ -13,13 +14,13 @@ import models.Nilai;
  */
 public interface NilaiDao {
 
-    public boolean insert(Nilai nilai);
+    public boolean insert(Nilai nilai) throws SQLException;
 
-    public boolean update(Nilai nilai);
+    public boolean update(Nilai nilai) throws SQLException;
 
-    public boolean delete(int id);
+    public boolean delete(int id) throws SQLException;
 
-    public Nilai getNilaiById(int id);
+    public Nilai getNilaiById(int id) throws SQLException;
 
-    public List<Nilai> getAllNilai();
+    public List<Nilai> getAllNilai() throws SQLException;
 }

@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.SQLException;
 import java.util.List;
 import models.Kelas;
 
@@ -13,13 +14,13 @@ import models.Kelas;
  */
 public interface KelasDao {
 
-    public boolean insert(Kelas kelas);
+    public boolean insert(Kelas kelas) throws SQLException;
 
-    public boolean update(Kelas kelas);
+    public boolean update(Kelas kelas) throws SQLException;
 
-    public boolean delete(String kodeKelas);
+    public boolean delete(String kodeKelas) throws SQLException;
 
-    public Kelas getKelasByKodeKelas(String kodeKelas);
+    public Kelas getKelasByKodeKelas(String kodeKelas) throws SQLException;
 
-    public List<Kelas> getAllKelas();
+    public List<Kelas> getAllKelas() throws SQLException;
 }
