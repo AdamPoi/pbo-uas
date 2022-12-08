@@ -15,13 +15,18 @@ public class JadwalPelajaran {
     private String hari;
     private Guru guru;
     private Kelas kelas;
+    private Siswa[] listSiswa;
 
-    public JadwalPelajaran(String kodeJadwal, int waktuPembelajaran, String hari, Guru guru, Kelas kelas) {
+    public JadwalPelajaran() {
+    }
+
+    public JadwalPelajaran(String kodeJadwal, int waktuPembelajaran, String hari, Guru guru, Kelas kelas, Siswa[] listSiswa) {
         this.kodeJadwal = kodeJadwal;
         this.waktuPembelajaran = waktuPembelajaran;
         this.hari = hari;
         this.guru = guru;
         this.kelas = kelas;
+        this.listSiswa = listSiswa;
     }
 
     public String getKodeJadwal() {
@@ -62,6 +67,14 @@ public class JadwalPelajaran {
 
     public void setKelas(Kelas kelas) {
         this.kelas = kelas;
+    }
+
+    public Siswa[] getListSiswa() {
+        return listSiswa;
+    }
+
+    public void setListSiswa(Siswa[] listSiswa) {
+        this.listSiswa = listSiswa;
     }
 
 }

@@ -11,15 +11,16 @@ package models;
 public class Kelas {
 
     private String kodeKelas;
-    private String namaKelas;
+    private String nama;
     private int tingkat;
-    private Siswa[] siswa;
 
-    public Kelas(String kodeKelas, String namaKelas, int tingkat, Siswa[] siswa) {
+    public Kelas() {
+    }
+
+    public Kelas(String kodeKelas, String nama, int tingkat) {
         this.kodeKelas = kodeKelas;
-        this.namaKelas = namaKelas;
+        this.nama = nama;
         this.tingkat = tingkat;
-        this.siswa = siswa;
     }
 
     public String getKodeKelas() {
@@ -30,12 +31,12 @@ public class Kelas {
         this.kodeKelas = kodeKelas;
     }
 
-    public String getNamaKelas() {
-        return namaKelas;
+    public String getNama() {
+        return nama;
     }
 
-    public void setNamaKelas(String namaKelas) {
-        this.namaKelas = namaKelas;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public int getTingkat() {
@@ -44,14 +45,6 @@ public class Kelas {
 
     public void setTingkat(int tingkat) {
         this.tingkat = tingkat;
-    }
-
-    public Siswa[] getSiswa() {
-        return siswa;
-    }
-
-    public void setSiswa(Siswa[] siswa) {
-        this.siswa = siswa;
     }
 
 }

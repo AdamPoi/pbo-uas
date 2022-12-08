@@ -10,29 +10,32 @@ package models;
  */
 public class Siswa extends Orang {
 
-    private String nisn;
-    private JadwalPelajaran[] jadwalPelajaran;
+    private String nis;
+    private JadwalPelajaran[] listJadwalPelajaran;
 
-    public Siswa(String nisn, JadwalPelajaran[] jadwalPelajaran, String nama, String jenisKelamin, String alamat, String noTelp) {
-        super(nama, jenisKelamin, alamat, noTelp);
-        this.nisn = nisn;
-        this.jadwalPelajaran = jadwalPelajaran;
+    public Siswa() {
     }
 
-    public String getNisn() {
-        return nisn;
+    public Siswa(String nis, JadwalPelajaran[] listJadwalPelajaran, String nama, String jenisKelamin, String alamat, String telepon) {
+        super(nama, jenisKelamin, alamat, telepon);
+        this.nis = nis;
+        this.listJadwalPelajaran = listJadwalPelajaran;
     }
 
-    public void setNisn(String nisn) {
-        this.nisn = nisn;
+    public String getNis() {
+        return nis;
+    }
+
+    public void setNis(String nis) {
+        this.nis = nis;
     }
 
     public JadwalPelajaran[] getJadwalPelajaran() {
-        return jadwalPelajaran;
+        return listJadwalPelajaran;
     }
 
     public void setJadwalPelajaran(JadwalPelajaran[] jadwalPelajaran) {
-        this.jadwalPelajaran = jadwalPelajaran;
+        this.listJadwalPelajaran = jadwalPelajaran;
     }
 
 }
