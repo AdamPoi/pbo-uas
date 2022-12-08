@@ -18,10 +18,12 @@ public interface SiswaDao {
 
     public boolean update(Siswa siswa) throws SQLException;
 
-    public boolean delete(String nisn) throws SQLException;
+    public boolean delete(String nis) throws SQLException;
 
     public Siswa getByNis(String nis) throws SQLException;
 
     public List<Siswa> getAll() throws SQLException;
+
+    public List<Siswa> search(String keyword) throws SQLException;
 
 }

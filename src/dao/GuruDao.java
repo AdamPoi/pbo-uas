@@ -23,4 +23,7 @@ public interface GuruDao {
     public Guru getByNip(String nip) throws SQLException;
 
     public List<Guru> getAll() throws SQLException;
+
+    public List<Guru> search(String keyword) throws SQLException;
+
 }

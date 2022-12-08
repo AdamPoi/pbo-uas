@@ -12,8 +12,11 @@ public class Guru extends Orang {
 
     private String nip;
 
-    public Guru(String nip, String nama, String jenisKelamin, String alamat, String noTelp) {
-        super(nama, jenisKelamin, alamat, noTelp);
+    public Guru() {
+    }
+
+    public Guru(String nip, String nama, String jenisKelamin, String alamat, String telepon) {
+        super(nama, jenisKelamin, alamat, telepon);
         this.nip = nip;
     }
 

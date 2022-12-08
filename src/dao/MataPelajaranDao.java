@@ -24,4 +24,6 @@ public interface MataPelajaranDao {
 
     public List<MataPelajaran> getAll() throws SQLException;
 
+    public List<MataPelajaran> search(String keyword) throws SQLException;
+
 }

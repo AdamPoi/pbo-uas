@@ -23,4 +23,7 @@ public interface AdminDao {
     public Admin getById(String idAdmin) throws SQLException;
 
     public List<Admin> getAll() throws SQLException;
+
+    public List<Admin> search(String keyword) throws SQLException;
+
 }

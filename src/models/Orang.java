@@ -13,13 +13,16 @@ public class Orang {
     protected String nama;
     protected String jenisKelamin;
     protected String alamat;
-    protected String noTelp;
+    protected String telepon;
 
-    public Orang(String nama, String jenisKelamin, String alamat, String noTelp) {
+    public Orang() {
+    }
+
+    public Orang(String nama, String jenisKelamin, String alamat, String telepon) {
         this.nama = nama;
         this.jenisKelamin = jenisKelamin;
         this.alamat = alamat;
-        this.noTelp = noTelp;
+        this.telepon = telepon;
     }
 
     public String getNama() {
@@ -46,12 +49,12 @@ public class Orang {
         this.alamat = alamat;
     }
 
-    public String getNoTelp() {
-        return noTelp;
+    public String getTelepon() {
+        return telepon;
     }
 
-    public void setNoTelp(String noTelp) {
-        this.noTelp = noTelp;
+    public void setTelepon(String telepon) {
+        this.telepon = telepon;
     }
 
 }

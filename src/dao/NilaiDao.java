@@ -23,4 +23,7 @@ public interface NilaiDao {
     public Nilai getById(int id) throws SQLException;
 
     public List<Nilai> getAll() throws SQLException;
+
+    public List<Nilai> search(String keyword) throws SQLException;
+
 }

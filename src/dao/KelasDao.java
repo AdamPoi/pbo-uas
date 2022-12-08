@@ -23,4 +23,7 @@ public interface KelasDao {
     public Kelas getByKode(String kodeKelas) throws SQLException;
 
     public List<Kelas> getAll() throws SQLException;
+
+    public List<Kelas> search(String keyword) throws SQLException;
+
 }

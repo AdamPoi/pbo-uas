@@ -15,6 +15,9 @@ public class Nilai {
     private Siswa siswa;
     private MataPelajaran mataPelajaran;
 
+    public Nilai() {
+    }
+
     public Nilai(String jenisNilai, double nilai, Siswa siswa, MataPelajaran mataPelajaran) {
         this.jenisNilai = jenisNilai;
         this.nilai = nilai;

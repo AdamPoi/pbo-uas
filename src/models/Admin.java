@@ -12,8 +12,11 @@ public class Admin extends Orang {
 
     private String idAdmin;
 
-    public Admin(String idAdmin, String nama, String jenisKelamin, String alamat, String noTelp) {
-        super(nama, jenisKelamin, alamat, noTelp);
+    public Admin() {
+    }
+
+    public Admin(String idAdmin, String nama, String jenisKelamin, String alamat, String telepon) {
+        super(nama, jenisKelamin, alamat, telepon);
         this.idAdmin = idAdmin;
     }
 
