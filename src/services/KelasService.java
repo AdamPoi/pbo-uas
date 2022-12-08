@@ -4,7 +4,7 @@
  */
 package services;
 
-import dao.SiswaDao;
+import dao.KelasDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,48 +14,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.Siswa;
+import models.Kelas;
 import utils.DBConnection;
 
 /**
  *
  * @author nyaw
  */
-public class SiswaService implements SiswaDao {
+public class KelasService implements KelasDao {
 
     private final Connection connection;
-    private final String SQL_INSERT = "INSERT INTO siswa (nis, nama, alamat, jenis_kelamin,telepon) VALUES (?,?,?,?,?)";
-    private final String SQL_UPDATE = "UPDATE siswa SET nama=?, alamat=?, jenis_kelamin=?, telepon=? WHERE nis=?";
-    private final String SQL_DELETE = "DELETE FROM siswa WHERE nis=?";
-    private final String SQL_SELECT_ALL = "SELECT * FROM siswa";
-    private final String SQL_SELECT_BY_NIS = "SELECT * FROM siswa WHERE nis=?";
-    private final String SQL_SEARCH = "SELECT * FROM siswa WHERE nis LIKE ? OR nama LIKE ?";
+    private final String SQL_INSERT = "INSERT INTO kelas (kode_kelas, nama, tingkat) VALUES (?,?,?)";
+    private final String SQL_UPDATE = "UPDATE kelas SET nama=?, tingkat=? WHERE kode_kelas=?";
+    private final String SQL_DELETE = "DELETE FROM kelas WHERE kode_kelas=?";
+    private final String SQL_SELECT_ALL = "SELECT * FROM kelas";
+    private final String SQL_SELECT_BY_NIS = "SELECT * FROM kelas WHERE kode_kelas=?";
+    private final String SQL_SEARCH = "SELECT * FROM kelas WHERE kode_kelas LIKE ? OR nama LIKE ?";
 
-    public SiswaService() {
+    public KelasService() {
         this.connection = DBConnection.getInstance();
     }
 
     @Override
-    public boolean insert(Siswa siswa) {
+    public boolean insert(Kelas kelas) {
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_INSERT);
-            prepareStatement.setString(1, siswa.getNis());
-            prepareStatement.setString(2, siswa.getNama());
-            prepareStatement.setString(3, siswa.getAlamat());
-            prepareStatement.setString(4, siswa.getJenisKelamin());
-            prepareStatement.setString(5, siswa.getTelepon());
+            prepareStatement.setString(1, kelas.getKodeKelas());
+            prepareStatement.setString(2, kelas.getNama());
+            prepareStatement.setInt(3, kelas.getTingkat());
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
-            Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (prepareStatement != null) {
                     prepareStatement.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -63,27 +61,26 @@ public class SiswaService implements SiswaDao {
     }
 
     @Override
-    public boolean update(Siswa siswa) {
+    public boolean update(Kelas kelas) {
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_UPDATE);
-            prepareStatement.setString(1, siswa.getNama());
-            prepareStatement.setString(2, siswa.getAlamat());
-            prepareStatement.setString(3, siswa.getJenisKelamin());
-            prepareStatement.setString(4, siswa.getTelepon());
-            prepareStatement.setString(5, siswa.getNis());
+            prepareStatement.setString(1, kelas.getNama());
+            prepareStatement.setInt(2, kelas.getTingkat());
+
+            prepareStatement.setString(5, kelas.getKodeKelas());
 
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
-            Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (prepareStatement != null) {
                     prepareStatement.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -91,14 +88,14 @@ public class SiswaService implements SiswaDao {
     }
 
     @Override
-    public boolean delete(String nis) {
+    public boolean delete(String kodeKelas) {
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_DELETE);
-            prepareStatement.setString(1, nis);
+            prepareStatement.setString(1, kodeKelas);
             return prepareStatement.executeUpdate() > 0;
         } catch (SQLException ex) {
-            Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
@@ -106,7 +103,7 @@ public class SiswaService implements SiswaDao {
                     prepareStatement.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -114,25 +111,23 @@ public class SiswaService implements SiswaDao {
     }
 
     @Override
-    public Siswa getByNis(String nis) {
+    public Kelas getByKode(String kodeKelas) {
         PreparedStatement prepareStatement = null;
         ResultSet result = null;
-        Siswa siswa = null;
+        Kelas kelas = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_SELECT_BY_NIS);
-            prepareStatement.setString(1, nis);
+            prepareStatement.setString(1, kodeKelas);
             result = prepareStatement.executeQuery();
             if (result.next()) {
-                siswa = new Siswa();
-                siswa.setNis(result.getString("nis"));
-                siswa.setNama(result.getString("nama"));
-                siswa.setJenisKelamin(result.getString("jenis_kelamin"));
-                siswa.setAlamat(result.getString("alamat"));
-                siswa.setTelepon(result.getString("telepon"));
+                kelas = new Kelas();
+                kelas.setKodeKelas(result.getString("kodeKelas"));
+                kelas.setNama(result.getString("nama"));
+                kelas.setTingkat(result.getInt("tingkat"));
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
@@ -143,32 +138,30 @@ public class SiswaService implements SiswaDao {
                     result.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        return siswa;
+        return kelas;
     }
 
     @Override
-    public List<Siswa> getAll() {
-        List<Siswa> listSiswa = new ArrayList<>();
+    public List<Kelas> getAll() {
+        List<Kelas> listKelas = new ArrayList<>();
         Statement statement = null;
         ResultSet result = null;
         try {
             statement = connection.createStatement();
             result = statement.executeQuery(SQL_SELECT_ALL);
             while (result.next()) {
-                Siswa siswa = new Siswa();
-                siswa.setNis(result.getString("nis"));
-                siswa.setNama(result.getString("nama"));
-                siswa.setJenisKelamin(result.getString("jenis_kelamin"));
-                siswa.setAlamat(result.getString("alamat"));
-                siswa.setTelepon(result.getString("telepon"));
-                listSiswa.add(siswa);
+                Kelas kelas = new Kelas();
+                kelas.setKodeKelas(result.getString("kodeKelas"));
+                kelas.setNama(result.getString("nama"));
+                kelas.setTingkat(result.getInt("tingkat"));
+                listKelas.add(kelas);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
@@ -179,16 +172,16 @@ public class SiswaService implements SiswaDao {
                     result.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        return listSiswa;
+        return listKelas;
     }
 
     @Override
-    public List<Siswa> search(String keyword) throws SQLException {
-        List<Siswa> listSiswa = new ArrayList<>();
+    public List<Kelas> search(String keyword) throws SQLException {
+        List<Kelas> listKelas = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet result = null;
         try {
@@ -198,16 +191,14 @@ public class SiswaService implements SiswaDao {
 
             result = prepareStatement.executeQuery();
             while (result.next()) {
-                Siswa siswa = new Siswa();
-                siswa.setNis(result.getString("nis"));
-                siswa.setNama(result.getString("nama"));
-                siswa.setJenisKelamin(result.getString("jenis_kelamin"));
-                siswa.setAlamat(result.getString("alamat"));
-                siswa.setTelepon(result.getString("telepon"));
-                listSiswa.add(siswa);
+                Kelas kelas = new Kelas();
+                kelas.setKodeKelas(result.getString("kodeKelas"));
+                kelas.setNama(result.getString("nama"));
+                kelas.setTingkat(result.getInt("tingkat"));
+                listKelas.add(kelas);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
@@ -218,11 +209,10 @@ public class SiswaService implements SiswaDao {
                     result.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(SiswaService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        return listSiswa;
+        return listKelas;
     }
-
 }
