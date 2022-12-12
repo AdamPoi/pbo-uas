@@ -67,8 +67,7 @@ public class KelasService implements KelasDao {
             prepareStatement = connection.prepareStatement(SQL_UPDATE);
             prepareStatement.setString(1, kelas.getNama());
             prepareStatement.setInt(2, kelas.getTingkat());
-
-            prepareStatement.setString(5, kelas.getKodeKelas());
+            prepareStatement.setString(3, kelas.getKodeKelas());
 
             return prepareStatement.executeUpdate() > 0;
 
@@ -121,7 +120,7 @@ public class KelasService implements KelasDao {
             result = prepareStatement.executeQuery();
             if (result.next()) {
                 kelas = new Kelas();
-                kelas.setKodeKelas(result.getString("kodeKelas"));
+                kelas.setKodeKelas(result.getString("kode_kelas"));
                 kelas.setNama(result.getString("nama"));
                 kelas.setTingkat(result.getInt("tingkat"));
 
@@ -155,7 +154,7 @@ public class KelasService implements KelasDao {
             result = statement.executeQuery(SQL_SELECT_ALL);
             while (result.next()) {
                 Kelas kelas = new Kelas();
-                kelas.setKodeKelas(result.getString("kodeKelas"));
+                kelas.setKodeKelas(result.getString("kode_kelas"));
                 kelas.setNama(result.getString("nama"));
                 kelas.setTingkat(result.getInt("tingkat"));
                 listKelas.add(kelas);
@@ -192,7 +191,7 @@ public class KelasService implements KelasDao {
             result = prepareStatement.executeQuery();
             while (result.next()) {
                 Kelas kelas = new Kelas();
-                kelas.setKodeKelas(result.getString("kodeKelas"));
+                kelas.setKodeKelas(result.getString("kode_kelas"));
                 kelas.setNama(result.getString("nama"));
                 kelas.setTingkat(result.getInt("tingkat"));
                 listKelas.add(kelas);
