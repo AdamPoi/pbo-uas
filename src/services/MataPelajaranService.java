@@ -24,8 +24,8 @@ import utils.DBConnection;
 public class MataPelajaranService implements MataPelajaranDao {
 
     private final Connection connection;
-    private final String SQL_INSERT = "INSERT INTO mata_pelajaran (kode_mata_pelajaran, nama, alamat, jenis_kelamin,telepon) VALUES (?,?,?,?,?)";
-    private final String SQL_UPDATE = "UPDATE mata_pelajaran SET nama=?, alamat=?, jenis_kelamin=?, telepon=? WHERE kode_mata_pelajaran=?";
+    private final String SQL_INSERT = "INSERT INTO mata_pelajaran (kode_mata_pelajaran, nama) VALUES (?,?)";
+    private final String SQL_UPDATE = "UPDATE mata_pelajaran SET nama=? WHERE kode_mata_pelajaran=?";
     private final String SQL_DELETE = "DELETE FROM mata_pelajaran WHERE kode_mata_pelajaran=?";
     private final String SQL_SELECT_ALL = "SELECT * FROM mata_pelajaran";
     private final String SQL_SELECT_BY_NIS = "SELECT * FROM mata_pelajaran WHERE kode_mata_pelajaran=?";
@@ -65,7 +65,7 @@ public class MataPelajaranService implements MataPelajaranDao {
         try {
             prepareStatement = connection.prepareStatement(SQL_UPDATE);
             prepareStatement.setString(1, mataPelajaran.getNama());
-            prepareStatement.setString(5, mataPelajaran.getKodeMataPelajaran());
+            prepareStatement.setString(2, mataPelajaran.getKodeMataPelajaran());
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
@@ -114,7 +114,7 @@ public class MataPelajaranService implements MataPelajaranDao {
             result = prepareStatement.executeQuery();
             if (result.next()) {
                 mataPelajaran = new MataPelajaran();
-                mataPelajaran.setKodeMataPelajaran(result.getString("kode"));
+                mataPelajaran.setKodeMataPelajaran(result.getString("kode_mata_pelajaran"));
                 mataPelajaran.setNama(result.getString("nama"));
             }
         } catch (SQLException ex) {
@@ -146,7 +146,7 @@ public class MataPelajaranService implements MataPelajaranDao {
             result = statement.executeQuery(SQL_SELECT_ALL);
             while (result.next()) {
                 MataPelajaran mataPelajaran = new MataPelajaran();
-                mataPelajaran.setKodeMataPelajaran(result.getString("kode"));
+                mataPelajaran.setKodeMataPelajaran(result.getString("kode_mata_pelajaran"));
                 mataPelajaran.setNama(result.getString("nama"));
                 listMataPelajaran.add(mataPelajaran);
             }
@@ -182,7 +182,7 @@ public class MataPelajaranService implements MataPelajaranDao {
             result = prepareStatement.executeQuery();
             while (result.next()) {
                 MataPelajaran mataPelajaran = new MataPelajaran();
-                mataPelajaran.setKodeMataPelajaran(result.getString("kode"));
+                mataPelajaran.setKodeMataPelajaran(result.getString("kode_mata_pelajaran"));
                 mataPelajaran.setNama(result.getString("nama"));
                 listMataPelajaran.add(mataPelajaran);
             }
