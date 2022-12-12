@@ -8,17 +8,17 @@ package models;
  *
  * @author nyaw
  */
-public class Orang {
+public class Pengguna {
 
     protected String nama;
     protected String jenisKelamin;
     protected String alamat;
     protected String telepon;
 
-    public Orang() {
+    public Pengguna() {
     }
 
-    public Orang(String nama, String jenisKelamin, String alamat, String telepon) {
+    public Pengguna(String nama, String jenisKelamin, String alamat, String telepon) {
         this.nama = nama;
         this.jenisKelamin = jenisKelamin;
         this.alamat = alamat;

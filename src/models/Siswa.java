@@ -8,7 +8,7 @@ package models;
  *
  * @author nyaw
  */
-public class Siswa extends Orang {
+public class Siswa extends Pengguna {
 
     private String nis;
     private JadwalPelajaran[] listJadwalPelajaran;

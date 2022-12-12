@@ -8,7 +8,7 @@ package models;
  *
  * @author nyaw
  */
-public class Guru extends Orang {
+public class Guru extends Pengguna {
 
     private String nip;
 

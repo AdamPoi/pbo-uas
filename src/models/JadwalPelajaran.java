@@ -11,7 +11,8 @@ package models;
 public class JadwalPelajaran {
 
     private String kodeJadwal;
-    private int waktuPembelajaran;
+    private String waktuMulai;
+    private String waktuSelesai;
     private String hari;
     private Guru guru;
     private Kelas kelas;
@@ -20,9 +21,10 @@ public class JadwalPelajaran {
     public JadwalPelajaran() {
     }
 
-    public JadwalPelajaran(String kodeJadwal, int waktuPembelajaran, String hari, Guru guru, Kelas kelas, Siswa[] listSiswa) {
+    public JadwalPelajaran(String kodeJadwal, String waktuMulai, String waktuSelesai, String hari, Guru guru, Kelas kelas, Siswa[] listSiswa) {
         this.kodeJadwal = kodeJadwal;
-        this.waktuPembelajaran = waktuPembelajaran;
+        this.waktuMulai = waktuMulai;
+        this.waktuSelesai = waktuSelesai;
         this.hari = hari;
         this.guru = guru;
         this.kelas = kelas;
@@ -37,12 +39,20 @@ public class JadwalPelajaran {
         this.kodeJadwal = kodeJadwal;
     }
 
-    public int getWaktuPembelajaran() {
-        return waktuPembelajaran;
+    public String getWaktuMulai() {
+        return waktuMulai;
     }
 
-    public void setWaktuPembelajaran(int waktuPembelajaran) {
-        this.waktuPembelajaran = waktuPembelajaran;
+    public void setWaktuMulai(String waktuMulai) {
+        this.waktuMulai = waktuMulai;
+    }
+
+    public String getWaktuSelesai() {
+        return waktuSelesai;
+    }
+
+    public void setWaktuSelesai(String waktuSelesai) {
+        this.waktuSelesai = waktuSelesai;
     }
 
     public String getHari() {

@@ -8,7 +8,7 @@ package models;
  *
  * @author nyaw
  */
-public class Admin extends Orang {
+public class Admin extends Pengguna {
 
     private String idAdmin;
 
