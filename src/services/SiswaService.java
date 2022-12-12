@@ -187,14 +187,14 @@ public class SiswaService implements SiswaDao {
     }
 
     @Override
-    public List<Siswa> search(String keyword) throws SQLException {
+    public List<Siswa> search(String keyword) {
         List<Siswa> listSiswa = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet result = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_SEARCH);
-            prepareStatement.setString(1, keyword);
-            prepareStatement.setString(1, keyword);
+            prepareStatement.setString(1, "%" + keyword + "%");
+            prepareStatement.setString(2, "%" + keyword + "%");
 
             result = prepareStatement.executeQuery();
             while (result.next()) {

@@ -4,7 +4,7 @@
  */
 package services;
 
-import dao.AdminDao;
+import dao.MataPelajaranDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,48 +14,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.Admin;
+import models.MataPelajaran;
 import utils.DBConnection;
 
 /**
  *
  * @author nyaw
  */
-public class AdminService implements AdminDao {
+public class MataPelajaranService implements MataPelajaranDao {
 
     private final Connection connection;
-    private final String SQL_INSERT = "INSERT INTO admin (id, nama, alamat, jeid_kelamin,telepon) VALUES (?,?,?,?,?)";
-    private final String SQL_UPDATE = "UPDATE admin SET nama=?, alamat=?, jenis_kelamin=?, telepon=? WHERE id=?";
-    private final String SQL_DELETE = "DELETE FROM admin WHERE id=?";
-    private final String SQL_SELECT_ALL = "SELECT * FROM admin";
-    private final String SQL_SELECT_BY_NIS = "SELECT * FROM admin WHERE id=?";
-    private final String SQL_SEARCH = "SELECT * FROM admin WHERE id LIKE ? OR nama LIKE ?";
+    private final String SQL_INSERT = "INSERT INTO mata_pelajaran (kode_mata_pelajaran, nama, alamat, jenis_kelamin,telepon) VALUES (?,?,?,?,?)";
+    private final String SQL_UPDATE = "UPDATE mata_pelajaran SET nama=?, alamat=?, jenis_kelamin=?, telepon=? WHERE kode_mata_pelajaran=?";
+    private final String SQL_DELETE = "DELETE FROM mata_pelajaran WHERE kode_mata_pelajaran=?";
+    private final String SQL_SELECT_ALL = "SELECT * FROM mata_pelajaran";
+    private final String SQL_SELECT_BY_NIS = "SELECT * FROM mata_pelajaran WHERE kode_mata_pelajaran=?";
+    private final String SQL_SEARCH = "SELECT * FROM mata_pelajaran WHERE kode_mata_pelajaran LIKE ? OR nama LIKE ?";
 
-    public AdminService() {
+    public MataPelajaranService() {
         this.connection = DBConnection.getInstance();
     }
 
     @Override
-    public boolean insert(Admin admin) {
+    public boolean insert(MataPelajaran mataPelajaran) {
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_INSERT);
-            prepareStatement.setString(1, admin.getIdAdmin());
-            prepareStatement.setString(2, admin.getNama());
-            prepareStatement.setString(3, admin.getAlamat());
-            prepareStatement.setString(4, admin.getJenisKelamin());
-            prepareStatement.setString(5, admin.getTelepon());
+            prepareStatement.setString(1, mataPelajaran.getKodeMataPelajaran());
+            prepareStatement.setString(2, mataPelajaran.getNama());
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (prepareStatement != null) {
                     prepareStatement.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -63,76 +60,65 @@ public class AdminService implements AdminDao {
     }
 
     @Override
-    public boolean update(Admin admin) {
+    public boolean update(MataPelajaran mataPelajaran) {
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_UPDATE);
-            prepareStatement.setString(1, admin.getNama());
-            prepareStatement.setString(2, admin.getAlamat());
-            prepareStatement.setString(3, admin.getJenisKelamin());
-            prepareStatement.setString(4, admin.getTelepon());
-            prepareStatement.setString(5, admin.getIdAdmin());
-
+            prepareStatement.setString(1, mataPelajaran.getNama());
+            prepareStatement.setString(5, mataPelajaran.getKodeMataPelajaran());
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (prepareStatement != null) {
                     prepareStatement.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
         return false;
     }
 
     @Override
-    public boolean delete(String idAdmin) {
+    public boolean delete(String kode) {
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_DELETE);
-            prepareStatement.setString(1, idAdmin);
+            prepareStatement.setString(1, kode);
             return prepareStatement.executeUpdate() > 0;
         } catch (SQLException ex) {
-            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-
             try {
                 if (prepareStatement != null) {
                     prepareStatement.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
         return false;
     }
 
     @Override
-    public Admin getById(String idAdmin) {
+    public MataPelajaran getByKode(String kode) {
         PreparedStatement prepareStatement = null;
         ResultSet result = null;
-        Admin admin = null;
+        MataPelajaran mataPelajaran = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_SELECT_BY_NIS);
-            prepareStatement.setString(1, idAdmin);
+            prepareStatement.setString(1, kode);
             result = prepareStatement.executeQuery();
             if (result.next()) {
-                admin = new Admin();
-                admin.setIdAdmin(result.getString("id"));
-                admin.setNama(result.getString("nama"));
-                admin.setJenisKelamin(result.getString("jeid_kelamin"));
-                admin.setAlamat(result.getString("alamat"));
-                admin.setTelepon(result.getString("telepon"));
-
+                mataPelajaran = new MataPelajaran();
+                mataPelajaran.setKodeMataPelajaran(result.getString("kode"));
+                mataPelajaran.setNama(result.getString("nama"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
@@ -143,32 +129,29 @@ public class AdminService implements AdminDao {
                     result.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        return admin;
+        return mataPelajaran;
     }
 
     @Override
-    public List<Admin> getAll() {
-        List<Admin> listAdmin = new ArrayList<>();
+    public List<MataPelajaran> getAll() {
+        List<MataPelajaran> listMataPelajaran = new ArrayList<>();
         Statement statement = null;
         ResultSet result = null;
         try {
             statement = connection.createStatement();
             result = statement.executeQuery(SQL_SELECT_ALL);
             while (result.next()) {
-                Admin admin = new Admin();
-                admin.setIdAdmin(result.getString("id"));
-                admin.setNama(result.getString("nama"));
-                admin.setJenisKelamin(result.getString("jeid_kelamin"));
-                admin.setAlamat(result.getString("alamat"));
-                admin.setTelepon(result.getString("telepon"));
-                listAdmin.add(admin);
+                MataPelajaran mataPelajaran = new MataPelajaran();
+                mataPelajaran.setKodeMataPelajaran(result.getString("kode"));
+                mataPelajaran.setNama(result.getString("nama"));
+                listMataPelajaran.add(mataPelajaran);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
@@ -179,16 +162,16 @@ public class AdminService implements AdminDao {
                     result.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        return listAdmin;
+        return listMataPelajaran;
     }
 
     @Override
-    public List<Admin> search(String keyword) {
-        List<Admin> listAdmin = new ArrayList<>();
+    public List<MataPelajaran> search(String keyword) {
+        List<MataPelajaran> listMataPelajaran = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet result = null;
         try {
@@ -198,16 +181,13 @@ public class AdminService implements AdminDao {
 
             result = prepareStatement.executeQuery();
             while (result.next()) {
-                Admin admin = new Admin();
-                admin.setIdAdmin(result.getString("id"));
-                admin.setNama(result.getString("nama"));
-                admin.setJenisKelamin(result.getString("jeid_kelamin"));
-                admin.setAlamat(result.getString("alamat"));
-                admin.setTelepon(result.getString("telepon"));
-                listAdmin.add(admin);
+                MataPelajaran mataPelajaran = new MataPelajaran();
+                mataPelajaran.setKodeMataPelajaran(result.getString("kode"));
+                mataPelajaran.setNama(result.getString("nama"));
+                listMataPelajaran.add(mataPelajaran);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
@@ -218,10 +198,10 @@ public class AdminService implements AdminDao {
                     result.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(AdminService.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MataPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        return listAdmin;
+        return listMataPelajaran;
     }
 }

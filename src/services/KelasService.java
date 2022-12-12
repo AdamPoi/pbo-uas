@@ -180,14 +180,14 @@ public class KelasService implements KelasDao {
     }
 
     @Override
-    public List<Kelas> search(String keyword) throws SQLException {
+    public List<Kelas> search(String keyword) {
         List<Kelas> listKelas = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet result = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_SEARCH);
-            prepareStatement.setString(1, keyword);
-            prepareStatement.setString(1, keyword);
+            prepareStatement.setString(1, "%" + keyword + "%");
+            prepareStatement.setString(2, "%" + keyword + "%");
 
             result = prepareStatement.executeQuery();
             while (result.next()) {
