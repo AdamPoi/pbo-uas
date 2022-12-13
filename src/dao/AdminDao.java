@@ -24,6 +24,8 @@ public interface AdminDao {
 
     public List<Admin> getAll() throws SQLException;
 
+    public Admin login(String username, String password) throws SQLException;
+
     public List<Admin> search(String keyword) throws SQLException;
 
 }

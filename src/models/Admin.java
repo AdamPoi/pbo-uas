@@ -11,13 +11,17 @@ package models;
 public class Admin extends Pengguna {
 
     private String idAdmin;
+    private String username;
+    private String password;
 
     public Admin() {
     }
 
-    public Admin(String idAdmin, String nama, String jenisKelamin, String alamat, String telepon) {
+    public Admin(String idAdmin, String username, String password, String nama, String jenisKelamin, String alamat, String telepon) {
         super(nama, jenisKelamin, alamat, telepon);
         this.idAdmin = idAdmin;
+        this.username = username;
+        this.password = password;
     }
 
     public String getIdAdmin() {
@@ -26,6 +30,22 @@ public class Admin extends Pengguna {
 
     public void setIdAdmin(String idAdmin) {
         this.idAdmin = idAdmin;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
