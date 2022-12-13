@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/models/Guru.java</file>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/utils/DBConnection.java</file>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/services/SiswaService.java</file>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/models/Nilai.java</file>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/models/Siswa.java</file>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/models/MataPelajaran.java</file>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/models/Orang.java</file>
-            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/models/Admin.java</file>
+            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/forms/FormLoginAdmin.java</file>
+            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/forms/FormGuru.java</file>
+            <file>file:/home/nyaw/Kuliah/Semester%203/Praktikum%20PBO/week14-UAS/pbo-uas/src/forms/FormLoginGuru.java</file>
         </group>
     </open-files>
 </project-private>

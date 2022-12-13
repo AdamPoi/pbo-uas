@@ -26,4 +26,5 @@ public interface GuruDao {
 
     public List<Guru> search(String keyword) throws SQLException;
 
+    public Guru login(String nip, String password) throws SQLException;
 }

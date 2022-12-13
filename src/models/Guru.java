@@ -11,13 +11,15 @@ package models;
 public class Guru extends Pengguna {
 
     private String nip;
+    private String password;
 
     public Guru() {
     }
 
-    public Guru(String nip, String nama, String jenisKelamin, String alamat, String telepon) {
+    public Guru(String nip, String password, String nama, String jenisKelamin, String alamat, String telepon) {
         super(nama, jenisKelamin, alamat, telepon);
         this.nip = nip;
+        this.password = password;
     }
 
     public String getNip() {
@@ -26,6 +28,14 @@ public class Guru extends Pengguna {
 
     public void setNip(String nip) {
         this.nip = nip;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

@@ -24,12 +24,13 @@ import utils.DBConnection;
 public class GuruService implements GuruDao {
 
     private final Connection connection;
-    private final String SQL_INSERT = "INSERT INTO guru (nip, nama, alamat, jenis_kelamin,telepon) VALUES (?,?,?,?,?)";
-    private final String SQL_UPDATE = "UPDATE guru SET nama=?, alamat=?, jenis_kelamin=?, telepon=? WHERE nip=?";
+    private final String SQL_INSERT = "INSERT INTO guru (nip, nama, alamat, jenis_kelamin,telepon,password) VALUES (?,?,?,?,?,?)";
+    private final String SQL_UPDATE = "UPDATE guru SET nama=?, alamat=?, jenis_kelamin=?, telepon=?, password=? WHERE nip=?";
     private final String SQL_DELETE = "DELETE FROM guru WHERE nip=?";
     private final String SQL_SELECT_ALL = "SELECT * FROM guru";
     private final String SQL_SELECT_BY_NIS = "SELECT * FROM guru WHERE nip=?";
     private final String SQL_SEARCH = "SELECT * FROM guru WHERE nip LIKE ? OR nama LIKE ?";
+    private final String SQL_LOGIN = "SELECT * FROM guru WHERE nip=? AND password=?";
 
     public GuruService() {
         this.connection = DBConnection.getInstance();
@@ -45,6 +46,8 @@ public class GuruService implements GuruDao {
             prepareStatement.setString(3, guru.getAlamat());
             prepareStatement.setString(4, guru.getJenisKelamin());
             prepareStatement.setString(5, guru.getTelepon());
+            prepareStatement.setString(6, guru.getPassword());
+
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
@@ -71,7 +74,8 @@ public class GuruService implements GuruDao {
             prepareStatement.setString(2, guru.getAlamat());
             prepareStatement.setString(3, guru.getJenisKelamin());
             prepareStatement.setString(4, guru.getTelepon());
-            prepareStatement.setString(5, guru.getNip());
+            prepareStatement.setString(5, guru.getPassword());
+            prepareStatement.setString(6, guru.getNip());
 
             return prepareStatement.executeUpdate() > 0;
 
@@ -129,6 +133,7 @@ public class GuruService implements GuruDao {
                 guru.setJenisKelamin(result.getString("jenis_kelamin"));
                 guru.setAlamat(result.getString("alamat"));
                 guru.setTelepon(result.getString("telepon"));
+                guru.setTelepon(result.getString("password"));
 
             }
         } catch (SQLException ex) {
@@ -165,6 +170,7 @@ public class GuruService implements GuruDao {
                 guru.setJenisKelamin(result.getString("jenis_kelamin"));
                 guru.setAlamat(result.getString("alamat"));
                 guru.setTelepon(result.getString("telepon"));
+
                 listGuru.add(guru);
             }
         } catch (SQLException ex) {
@@ -223,5 +229,45 @@ public class GuruService implements GuruDao {
 
         }
         return listGuru;
+    }
+
+    @Override
+    public Guru login(String nip, String password) throws SQLException {
+        PreparedStatement prepareStatement = null;
+        ResultSet result = null;
+        Guru guru = null;
+        try {
+            prepareStatement = connection.prepareStatement(SQL_LOGIN);
+            prepareStatement.setString(1, nip);
+            prepareStatement.setString(2, password);
+
+            result = prepareStatement.executeQuery();
+            if (result.next()) {
+                guru = new Guru();
+                guru.setNip(result.getString("nip"));
+                guru.setNama(result.getString("nama"));
+                guru.setJenisKelamin(result.getString("jenis_kelamin"));
+                guru.setAlamat(result.getString("alamat"));
+                guru.setTelepon(result.getString("telepon"));
+                guru.setPassword(result.getString("password"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(GuruService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            try {
+                if (prepareStatement != null) {
+                    prepareStatement.close();
+                }
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GuruService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return guru;
     }
 }
