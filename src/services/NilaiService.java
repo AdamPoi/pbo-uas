@@ -210,14 +210,14 @@ public class NilaiService implements NilaiDao {
     }
 
     @Override
-    public List<Nilai> search(String keyword) throws SQLException {
+    public List<Nilai> search(String keyword) {
         List<Nilai> listNilai = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet result = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_SEARCH);
-            prepareStatement.setString(1, "%"+keyword+"%");
-            prepareStatement.setString(2, "%"+keyword+"%");
+            prepareStatement.setString(1, "%" + keyword + "%");
+            prepareStatement.setString(2, "%" + keyword + "%");
             result = prepareStatement.executeQuery();
             SiswaService ss = new SiswaService();
             MataPelajaranService mps = new MataPelajaranService();
@@ -255,17 +255,17 @@ public class NilaiService implements NilaiDao {
     }
 
     @Override
-    public Nilai getBySiswa(String nis) throws SQLException {
+    public Nilai getBySiswa(String nis) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Nilai getByMataPelajaran(String kode) throws SQLException {
+    public Nilai getByMataPelajaran(String kode) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Nilai getBySiswaMataPelajaran(String nis, String kode) throws SQLException {
+    public Nilai getBySiswaMataPelajaran(String nis, String kode) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

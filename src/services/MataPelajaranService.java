@@ -28,7 +28,7 @@ public class MataPelajaranService implements MataPelajaranDao {
     private final String SQL_UPDATE = "UPDATE mata_pelajaran SET nama=? WHERE kode_mata_pelajaran=?";
     private final String SQL_DELETE = "DELETE FROM mata_pelajaran WHERE kode_mata_pelajaran=?";
     private final String SQL_SELECT_ALL = "SELECT * FROM mata_pelajaran";
-    private final String SQL_SELECT_BY_NIS = "SELECT * FROM mata_pelajaran WHERE kode_mata_pelajaran=?";
+    private final String SQL_SELECT_BY_KODE = "SELECT * FROM mata_pelajaran WHERE kode_mata_pelajaran=?";
     private final String SQL_SEARCH = "SELECT * FROM mata_pelajaran WHERE kode_mata_pelajaran LIKE ? OR nama LIKE ?";
 
     public MataPelajaranService() {
@@ -109,7 +109,7 @@ public class MataPelajaranService implements MataPelajaranDao {
         ResultSet result = null;
         MataPelajaran mataPelajaran = null;
         try {
-            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_NIS);
+            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_KODE);
             prepareStatement.setString(1, kode);
             result = prepareStatement.executeQuery();
             if (result.next()) {
