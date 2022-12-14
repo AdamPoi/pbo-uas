@@ -6,6 +6,7 @@ package dao;
 
 import java.sql.SQLException;
 import java.util.List;
+import models.Kelas;
 import models.Siswa;
 
 /**
@@ -23,6 +24,8 @@ public interface SiswaDao {
     public Siswa getByNis(String nis) throws SQLException;
 
     public List<Siswa> getAll() throws SQLException;
+
+    public Kelas getKelas(String nis) throws SQLException;
 
     public List<Siswa> search(String keyword) throws SQLException;
 

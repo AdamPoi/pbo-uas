@@ -4,6 +4,8 @@
  */
 package models;
 
+import java.util.List;
+
 /**
  *
  * @author nyaw
@@ -13,6 +15,7 @@ public class Kelas {
     private String kodeKelas;
     private String nama;
     private int tingkat;
+    private List<Siswa> listSiswa;
 
     public Kelas() {
     }
@@ -21,6 +24,14 @@ public class Kelas {
         this.kodeKelas = kodeKelas;
         this.nama = nama;
         this.tingkat = tingkat;
+    }
+
+    public List<Siswa> getListSiswa() {
+        return listSiswa;
+    }
+
+    public void setListSiswa(List<Siswa> listSiswa) {
+        this.listSiswa = listSiswa;
     }
 
     public String getKodeKelas() {

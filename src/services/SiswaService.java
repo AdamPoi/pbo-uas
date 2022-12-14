@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.Kelas;
 import models.Siswa;
 import utils.DBConnection;
 
@@ -30,6 +31,7 @@ public class SiswaService implements SiswaDao {
     private final String SQL_SELECT_ALL = "SELECT * FROM siswa";
     private final String SQL_SELECT_BY_NIS = "SELECT * FROM siswa WHERE nis=?";
     private final String SQL_SEARCH = "SELECT * FROM siswa WHERE nis LIKE ? OR nama LIKE ?";
+    private final String SQL_GET_SISWA_KELAS = "SELECT kelas.kode_kelas,kelas.nama,kelas.tingkat FROM kelas INNER JOIN siswa_kelas ON siswa_kelas.nis_siswa=?";
 
     public SiswaService() {
         this.connection = DBConnection.getInstance();
@@ -223,6 +225,43 @@ public class SiswaService implements SiswaDao {
 
         }
         return listSiswa;
+    }
+
+    @Override
+    public Kelas getKelas(String nis) {
+
+        PreparedStatement prepareStatement = null;
+        ResultSet result = null;
+        Kelas kelas = null;
+
+        try {
+            prepareStatement = connection.prepareStatement(SQL_GET_SISWA_KELAS);
+            prepareStatement.setString(1, nis);
+            result = prepareStatement.executeQuery();
+            if (result.next()) {
+                kelas = new Kelas();
+                kelas.setKodeKelas(result.getString("kode_kelas"));
+                kelas.setNama(result.getString("nama"));
+                kelas.setTingkat(result.getInt("tingkat"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            try {
+                if (prepareStatement != null) {
+                    prepareStatement.close();
+                }
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return kelas;
     }
 
 }
