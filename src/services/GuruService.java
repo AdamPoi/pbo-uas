@@ -25,6 +25,7 @@ public class GuruService implements GuruDao {
 
     private final Connection connection;
     private final String SQL_INSERT = "INSERT INTO guru (nip, nama, alamat, jenis_kelamin,telepon,password) VALUES (?,?,?,?,?,?)";
+    private final String SQL_UPDATE_NO_PASSWORD = "UPDATE guru SET nama=?, alamat=?, jenis_kelamin=?, telepon=? WHERE nip=?";
     private final String SQL_UPDATE = "UPDATE guru SET nama=?, alamat=?, jenis_kelamin=?, telepon=?, password=? WHERE nip=?";
     private final String SQL_DELETE = "DELETE FROM guru WHERE nip=?";
     private final String SQL_SELECT_ALL = "SELECT * FROM guru";
@@ -69,13 +70,23 @@ public class GuruService implements GuruDao {
     public boolean update(Guru guru) {
         PreparedStatement prepareStatement = null;
         try {
-            prepareStatement = connection.prepareStatement(SQL_UPDATE);
-            prepareStatement.setString(1, guru.getNama());
-            prepareStatement.setString(2, guru.getAlamat());
-            prepareStatement.setString(3, guru.getJenisKelamin());
-            prepareStatement.setString(4, guru.getTelepon());
-            prepareStatement.setString(5, guru.getPassword());
-            prepareStatement.setString(6, guru.getNip());
+            if (guru.getPassword() == null) {
+                prepareStatement = connection.prepareStatement(SQL_UPDATE_NO_PASSWORD);
+                prepareStatement.setString(1, guru.getNama());
+                prepareStatement.setString(2, guru.getAlamat());
+                prepareStatement.setString(3, guru.getJenisKelamin());
+                prepareStatement.setString(4, guru.getTelepon());
+                prepareStatement.setString(5, guru.getNip());
+            } else {
+                prepareStatement = connection.prepareStatement(SQL_UPDATE);
+                prepareStatement.setString(1, guru.getNama());
+                prepareStatement.setString(2, guru.getAlamat());
+                prepareStatement.setString(3, guru.getJenisKelamin());
+                prepareStatement.setString(4, guru.getTelepon());
+                prepareStatement.setString(5, guru.getPassword());
+                prepareStatement.setString(6, guru.getNip());
+
+            }
 
             return prepareStatement.executeUpdate() > 0;
 
@@ -133,7 +144,7 @@ public class GuruService implements GuruDao {
                 guru.setJenisKelamin(result.getString("jenis_kelamin"));
                 guru.setAlamat(result.getString("alamat"));
                 guru.setTelepon(result.getString("telepon"));
-                guru.setTelepon(result.getString("password"));
+                guru.setPassword(result.getString("password"));
 
             }
         } catch (SQLException ex) {
