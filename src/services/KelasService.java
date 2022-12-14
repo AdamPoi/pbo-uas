@@ -32,9 +32,10 @@ public class KelasService implements KelasDao, SiswaKelasDao {
     private final String SQL_SELECT_ALL = "SELECT * FROM kelas";
     private final String SQL_SELECT_ALL_SISWA = "SELECT siswa.nis,siswa.nama nama_siswa FROM siswa INNER JOIN siswa_kelas ON siswa.nis = siswa_kelas.nis_siswa WHERE siswa_kelas.kode_kelas=?";
     private final String SQL_SELECT_BY_NIS = "SELECT * FROM kelas WHERE kode_kelas=?";
+    private final String SQL_SELECT_BY_TINGKAT = "SELECT * FROM kelas WHERE tingkat=?";
     private final String SQL_SEARCH = "SELECT * FROM kelas WHERE kode_kelas LIKE ? OR nama LIKE ?";
     private final String SQL_INSERT_SISWA = "INSERT INTO siswa_kelas (nis_siswa,kode_kelas) VALUES (?,?)";
-    private final String SQL_UPDATE_SISWA = "UPDATE siswa_kelas kode_kelas=? WHERE nis_siswa=?";
+    private final String SQL_UPDATE_SISWA = "UPDATE siswa_kelas SET kode_kelas=? WHERE nis_siswa=?";
     private final String SQL_DELETE_SISWA = "DELETE FROM siswa_kelas WHERE nis_siswa=? AND kode_kelas=?";
     private final String SQL_GET_SISWA = "SELECT * FROM siswa_kelas WHERE nis_siswa=? AND kode_kelas=?";
 
@@ -288,7 +289,6 @@ public class KelasService implements KelasDao, SiswaKelasDao {
         try {
             prepareStatement = connection.prepareStatement(SQL_UPDATE_SISWA);
             prepareStatement.setString(1, kodeKelas);
-
             prepareStatement.setString(2, nis);
 
             return prepareStatement.executeUpdate() > 0;
@@ -331,6 +331,41 @@ public class KelasService implements KelasDao, SiswaKelasDao {
 
         }
         return false;
+    }
+
+    @Override
+    public List<Kelas> getByTingkat(int tingkat) {
+        PreparedStatement prepareStatement = null;
+        ResultSet result = null;
+        List<Kelas> listKelas = new ArrayList<>();
+        try {
+            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_TINGKAT);
+            prepareStatement.setInt(1, tingkat);
+            result = prepareStatement.executeQuery();
+            while (result.next()) {
+                Kelas kelas = new Kelas();
+                kelas.setKodeKelas(result.getString("kode_kelas"));
+                kelas.setNama(result.getString("nama"));
+                kelas.setTingkat(result.getInt("tingkat"));
+                listKelas.add(kelas);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            try {
+                if (prepareStatement != null) {
+                    prepareStatement.close();
+                }
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(KelasService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return listKelas;
     }
 
 }

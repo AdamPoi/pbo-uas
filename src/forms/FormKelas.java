@@ -6,6 +6,7 @@
 package forms;
 
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Kelas;
@@ -24,12 +25,7 @@ public class FormKelas extends javax.swing.JFrame {
 
     public FormKelas() {
         initComponents();
-        cmbTingkat.removeAllItems();
-        cmbTingkat.addItem("Pilih Kelas");
-        cmbTingkat.addItem("7");
-        cmbTingkat.addItem("8");
-        cmbTingkat.addItem("9");
-
+        setComboTingkat();
         setLocationRelativeTo(this);
         kosongkanForm();
         tampilkanData(kelasService.getAll());
@@ -39,6 +35,12 @@ public class FormKelas extends javax.swing.JFrame {
         txtKodeKelas.setText("");
         txtNamaKelas.setText("");
         cmbTingkat.setSelectedIndex(0);
+    }
+
+    public void setComboTingkat() {
+        String[] tingkat = {"Pilih Tingkat", "7", "8", "9"};
+        DefaultComboBoxModel cmbModel = new DefaultComboBoxModel(tingkat);
+        cmbTingkat.setModel(cmbModel);
     }
 
     public void tampilkanData(List<Kelas> listKelas) {

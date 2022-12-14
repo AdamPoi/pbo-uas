@@ -31,7 +31,7 @@ public class SiswaService implements SiswaDao {
     private final String SQL_SELECT_ALL = "SELECT * FROM siswa";
     private final String SQL_SELECT_BY_NIS = "SELECT * FROM siswa WHERE nis=?";
     private final String SQL_SEARCH = "SELECT * FROM siswa WHERE nis LIKE ? OR nama LIKE ?";
-    private final String SQL_GET_SISWA_KELAS = "SELECT kelas.kode_kelas,kelas.nama,kelas.tingkat FROM kelas INNER JOIN siswa_kelas ON siswa_kelas.nis_siswa=?";
+    private final String SQL_GET_SISWA_KELAS = "SELECT kelas.kode_kelas,kelas.nama,kelas.tingkat FROM kelas INNER JOIN siswa_kelas ON siswa_kelas.kode_kelas = kelas.kode_kelas WHERE siswa_kelas.nis_siswa=?";
 
     public SiswaService() {
         this.connection = DBConnection.getInstance();
