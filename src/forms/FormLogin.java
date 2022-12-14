@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tugasbesarprakpbo;
+package forms;
 
 /**
  *
@@ -46,9 +46,19 @@ public class FormLogin extends javax.swing.JFrame {
 
         btnLogInAdmin.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLogInAdmin.setText("LOG IN SEBAGAI ADMIN");
+        btnLogInAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogInAdminActionPerformed(evt);
+            }
+        });
 
         btnLogInGuru.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btnLogInGuru.setText("LOG IN SEBAGAI GURU");
+        btnLogInGuru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogInGuruActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,6 +141,18 @@ public class FormLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLogInAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInAdminActionPerformed
+        FormLoginAdmin fla = new FormLoginAdmin();
+        this.dispose();
+        fla.show();
+    }//GEN-LAST:event_btnLogInAdminActionPerformed
+
+    private void btnLogInGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInGuruActionPerformed
+        FormLoginGuru fla = new FormLoginGuru();
+        this.dispose();
+        fla.show();
+    }//GEN-LAST:event_btnLogInGuruActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -138,7 +160,7 @@ public class FormLogin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

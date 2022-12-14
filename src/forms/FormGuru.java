@@ -10,10 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Guru;
 import services.GuruService;
+import utils.AuthHelper;
 
 public class FormGuru extends javax.swing.JFrame {
 
     GuruService guruService = new GuruService();
+    Guru guru;
 
     public FormGuru() {
         initComponents();
@@ -31,6 +33,7 @@ public class FormGuru extends javax.swing.JFrame {
         txtAlamatPengajar.setText("");
         jkGroup.clearSelection();
         txtNomorTelepon.setText("");
+        txtPassword.setText("");
     }
 
     public void tampilkanData() {
@@ -58,22 +61,19 @@ public class FormGuru extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nama Guru belum diisi !");
             txtNamaPengajar.requestFocus();
             return false;
-
         } else if (jkGroup.getSelection() == null) {
             JOptionPane.showMessageDialog(null, "Jenis Kelamin Guru belum diisi !");
             return false;
-
         } else if (txtAlamatPengajar.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Alamat Guru belum diisi !");
             txtAlamatPengajar.requestFocus();
             return false;
-
         } else if (txtNomorTelepon.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Nomor Telepon Guru belum diisi !");
             txtNomorTelepon.requestFocus();
             return false;
-
         }
+
         return true;
     }
 
@@ -118,6 +118,8 @@ public class FormGuru extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         radioPria = new javax.swing.JRadioButton();
         radioWanita = new javax.swing.JRadioButton();
+        jLabel20 = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -202,6 +204,8 @@ public class FormGuru extends javax.swing.JFrame {
 
         radioWanita.setText("Perempuan");
 
+        jLabel20.setText("Password");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -220,7 +224,8 @@ public class FormGuru extends javax.swing.JFrame {
                             .addComponent(jLabel14)
                             .addComponent(jLabel15)
                             .addComponent(jLabel26)
-                            .addComponent(jLabel16))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel20))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
@@ -230,7 +235,8 @@ public class FormGuru extends javax.swing.JFrame {
                             .addComponent(txtNIP, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNamaPengajar, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAlamatPengajar, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNomorTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNomorTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSimpan, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -261,16 +267,20 @@ public class FormGuru extends javax.swing.JFrame {
                     .addComponent(txtAlamatPengajar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(btnHapus))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(radioPria)
                     .addComponent(radioWanita))
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomorTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCari))
@@ -431,7 +441,7 @@ public class FormGuru extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 764, Short.MAX_VALUE)
+            .addGap(0, 801, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -456,7 +466,7 @@ public class FormGuru extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
+            .addGap(0, 813, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -471,19 +481,19 @@ public class FormGuru extends javax.swing.JFrame {
         kosongkanForm();
         DefaultTableModel model = (DefaultTableModel) tblPengajar.getModel();
         int row = tblPengajar.getSelectedRow();
-
-        txtNIP.setText(model.getValueAt(row, 0).toString());
-        txtNamaPengajar.setText(model.getValueAt(row, 1).toString());
-        String kelamin = model.getValueAt(row, 2).toString();
+        String nip = model.getValueAt(row, 0).toString();
+        guru = guruService.getByNip(nip);
+        txtNIP.setText(guru.getNip());
+        txtNamaPengajar.setText(guru.getNama());
+        String kelamin = guru.getJenisKelamin();
 
         if (kelamin.equals("laki-laki")) {
             radioPria.setSelected(true);
         } else if (kelamin.equals("perempuan")) {
             radioWanita.setSelected(true);
         }
-
-        txtAlamatPengajar.setText(model.getValueAt(row, 3).toString());
-        txtNomorTelepon.setText(model.getValueAt(row, 4).toString());
+        txtAlamatPengajar.setText(guru.getAlamat());
+        txtNomorTelepon.setText(guru.getTelepon());
     }//GEN-LAST:event_tblPengajarMouseClicked
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
@@ -499,7 +509,6 @@ public class FormGuru extends javax.swing.JFrame {
             return;
         }
 
-        Guru guru = new Guru();
         guru.setNip(txtNIP.getText());
         guru.setNama(txtNamaPengajar.getText());
         String kelamin = "";
@@ -512,11 +521,28 @@ public class FormGuru extends javax.swing.JFrame {
         guru.setJenisKelamin(kelamin);
         guru.setAlamat(txtAlamatPengajar.getText());
         guru.setTelepon(txtNomorTelepon.getText());
+        if (!txtPassword.getText().trim().equals("")) {
+            guru.setPassword(AuthHelper.getMd5(txtPassword.getText()));
+        } else {
+            guru.setPassword(null);
+        }
 
         if (guruService.getByNip(txtNIP.getText()) == null) {
+            if (txtPassword.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Password Guru belum diisi !");
+                txtPassword.requestFocus();
+                return;
+            }
             guruService.insert(guru);
         } else {
-            guruService.update(guru);
+            int result = JOptionPane.showConfirmDialog(null, "Yakin ingin mengganti password guru?", "Ganti Password Guru", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                guruService.update(guru);
+            } else {
+                return;
+            }
+
         }
         kosongkanForm();
         tampilkanData();
@@ -552,7 +578,10 @@ public class FormGuru extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPenilaianActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
+        AuthHelper.setCurrentUSer(null);
+        FormLogin fl = new FormLogin();
+        this.dispose();
+        fl.show();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
@@ -615,6 +644,7 @@ public class FormGuru extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel3;
@@ -631,5 +661,6 @@ public class FormGuru extends javax.swing.JFrame {
     private javax.swing.JTextField txtNIP;
     private javax.swing.JTextField txtNamaPengajar;
     private javax.swing.JTextField txtNomorTelepon;
+    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

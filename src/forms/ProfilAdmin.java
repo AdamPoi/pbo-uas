@@ -305,7 +305,10 @@ public class ProfilAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCetakRapotActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
+        AuthHelper.setCurrentUSer(null);
+        FormLogin fl = new FormLogin();
+        this.dispose();
+        fl.show();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnSiswa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiswa1ActionPerformed

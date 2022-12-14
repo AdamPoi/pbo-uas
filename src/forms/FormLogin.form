@@ -97,6 +97,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="LOG IN SEBAGAI ADMIN"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogInAdminActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLogInGuru">
           <Properties>
@@ -105,6 +108,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="LOG IN SEBAGAI GURU"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogInGuruActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
