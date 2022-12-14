@@ -27,6 +27,8 @@ public class AdminService implements AdminDao {
     private final Connection connection;
     private final String SQL_INSERT = "INSERT INTO admin (id, nama, alamat, jenis_kelamin,telepon,username, password) VALUES (?,?,?,?,?,?,?)";
     private final String SQL_UPDATE = "UPDATE admin SET nama=?, alamat=?, jenis_kelamin=?, telepon=?,username=?,password=? WHERE id=?";
+    private final String SQL_UPDATE_NO_PASSWORD = "UPDATE admin SET nama=?, alamat=?, jenis_kelamin=?, telepon=?,username=? WHERE id=?";
+
     private final String SQL_DELETE = "DELETE FROM admin WHERE id=?";
     private final String SQL_SELECT_ALL = "SELECT * FROM admin";
     private final String SQL_SELECT_BY_NIS = "SELECT * FROM admin WHERE id=?";
@@ -71,14 +73,25 @@ public class AdminService implements AdminDao {
     public boolean update(Admin admin) {
         PreparedStatement prepareStatement = null;
         try {
-            prepareStatement = connection.prepareStatement(SQL_UPDATE);
-            prepareStatement.setString(1, admin.getNama());
-            prepareStatement.setString(2, admin.getAlamat());
-            prepareStatement.setString(3, admin.getJenisKelamin());
-            prepareStatement.setString(4, admin.getTelepon());
-            prepareStatement.setString(5, admin.getUsername());
-            prepareStatement.setString(6, admin.getIdAdmin());
-            prepareStatement.setString(7, AuthHelper.getMd5(admin.getPassword()));
+            if (admin.getPassword() == null) {
+                prepareStatement = connection.prepareStatement(SQL_UPDATE_NO_PASSWORD);
+                prepareStatement.setString(1, admin.getNama());
+                prepareStatement.setString(2, admin.getAlamat());
+                prepareStatement.setString(3, admin.getJenisKelamin());
+                prepareStatement.setString(4, admin.getTelepon());
+                prepareStatement.setString(5, admin.getUsername());
+                prepareStatement.setString(6, admin.getIdAdmin());
+            } else {
+                prepareStatement = connection.prepareStatement(SQL_UPDATE);
+                prepareStatement.setString(1, admin.getNama());
+                prepareStatement.setString(2, admin.getAlamat());
+                prepareStatement.setString(3, admin.getJenisKelamin());
+                prepareStatement.setString(4, admin.getTelepon());
+                prepareStatement.setString(5, admin.getUsername());
+                prepareStatement.setString(6, AuthHelper.getMd5(admin.getPassword()));
+                prepareStatement.setString(7, admin.getIdAdmin());
+
+            }
 
             return prepareStatement.executeUpdate() > 0;
 
