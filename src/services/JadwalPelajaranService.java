@@ -46,8 +46,8 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
             prepareStatement.setString(2, jadwalPelajaran.getHari());
             prepareStatement.setString(3, jadwalPelajaran.getGuru().getNip());
             prepareStatement.setString(4, jadwalPelajaran.getKelas().getKodeKelas());
-            prepareStatement.setString(5, jadwalPelajaran.getWaktuMulai());
-            prepareStatement.setString(6, jadwalPelajaran.getWaktuSelesai());
+            prepareStatement.setInt(5, jadwalPelajaran.getWaktuMulai());
+            prepareStatement.setInt(6, jadwalPelajaran.getWaktuSelesai());
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
@@ -73,8 +73,8 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
             prepareStatement.setString(1, jadwalPelajaran.getHari());
             prepareStatement.setString(2, jadwalPelajaran.getGuru().getNip());
             prepareStatement.setString(3, jadwalPelajaran.getKelas().getKodeKelas());
-            prepareStatement.setString(4, jadwalPelajaran.getWaktuMulai());
-            prepareStatement.setString(5, jadwalPelajaran.getWaktuSelesai());
+            prepareStatement.setInt(4, jadwalPelajaran.getWaktuMulai());
+            prepareStatement.setInt(5, jadwalPelajaran.getWaktuSelesai());
             prepareStatement.setString(6, jadwalPelajaran.getKodeJadwal());
 
             return prepareStatement.executeUpdate() > 0;
@@ -134,8 +134,8 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
                 jadwalPelajaran.setHari(result.getString("hari"));
                 jadwalPelajaran.setGuru(guru);
                 jadwalPelajaran.setKelas(kelas);
-                jadwalPelajaran.setWaktuMulai(result.getString("waktu_mulai"));
-                jadwalPelajaran.setWaktuSelesai(result.getString("waktu_selesai"));
+                jadwalPelajaran.setWaktuMulai(result.getInt("waktu_mulai"));
+                jadwalPelajaran.setWaktuSelesai(result.getInt("waktu_selesai"));
 
             }
         } catch (SQLException ex) {
@@ -175,8 +175,8 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
                 jadwalPelajaran.setHari(result.getString("hari"));
                 jadwalPelajaran.setGuru(guru);
                 jadwalPelajaran.setKelas(kelas);
-                jadwalPelajaran.setWaktuMulai(result.getString("waktu_mulai"));
-                jadwalPelajaran.setWaktuSelesai(result.getString("waktu_selesai"));
+                jadwalPelajaran.setWaktuMulai(result.getInt("waktu_mulai"));
+                jadwalPelajaran.setWaktuSelesai(result.getInt("waktu_selesai"));
                 listJadwalPelajaran.add(jadwalPelajaran);
             }
         } catch (SQLException ex) {
@@ -216,8 +216,8 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
                 jadwalPelajaran.setHari(result.getString("hari"));
                 jadwalPelajaran.setGuru(guru);
                 jadwalPelajaran.setKelas(kelas);
-                jadwalPelajaran.setWaktuMulai(result.getString("waktu_mulai"));
-                jadwalPelajaran.setWaktuSelesai(result.getString("waktu_selesai"));
+                jadwalPelajaran.setWaktuMulai(result.getInt("waktu_mulai"));
+                jadwalPelajaran.setWaktuSelesai(result.getInt("waktu_selesai"));
                 listJadwalPelajaran.add(jadwalPelajaran);
             }
         } catch (SQLException ex) {
