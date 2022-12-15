@@ -22,6 +22,12 @@ public interface NilaiDao {
 
     public Nilai getById(int id) throws SQLException;
 
+    public List<Nilai> getBySiswa(String nis) throws SQLException;
+
+    public List<Nilai> getByMataPelajaran(String kode) throws SQLException;
+
+    public Nilai getBySiswaMataPelajaran(String nis, String kode) throws SQLException;
+
     public List<Nilai> getAll() throws SQLException;
 
     public List<Nilai> search(String keyword) throws SQLException;

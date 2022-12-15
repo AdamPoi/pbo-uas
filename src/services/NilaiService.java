@@ -255,17 +255,96 @@ public class NilaiService implements NilaiDao {
     }
 
     @Override
-    public Nilai getBySiswa(String nis) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Nilai> getBySiswa(String nis) {
+        List<Nilai> listNilai = new ArrayList<>();
+        PreparedStatement prepareStatement = null;
+        ResultSet result = null;
+        try {
+            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_SISWA);
+            prepareStatement.setString(1, nis);
+            result = prepareStatement.executeQuery();
+            SiswaService ss = new SiswaService();
+            MataPelajaranService mps = new MataPelajaranService();
+            while (result.next()) {
+                Nilai nilai = new Nilai();
+                Siswa siswa = ss.getByNis(result.getString("nis_siswa"));
+                MataPelajaran mapel = mps.getByKode(result.getString("kode_mata_pelajaran"));
+
+                nilai.setIdNilai(result.getInt("id_nilai"));
+                nilai.setSiswa(siswa);
+                nilai.setMataPelajaran(mapel);
+                nilai.setNilaiTugas(result.getDouble("nilai_tugas"));
+                nilai.setNilaiKuis(result.getDouble("nilai_kuis"));
+                nilai.setNilaiUTS(result.getDouble("nilai_uts"));
+                nilai.setNilaiUAS(result.getDouble("nilai_uas"));
+                listNilai.add(nilai);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NilaiService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            try {
+                if (prepareStatement != null) {
+                    prepareStatement.close();
+                }
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(NilaiService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return listNilai;
     }
 
     @Override
-    public Nilai getByMataPelajaran(String kode) {
+    public List<Nilai> getByMataPelajaran(String kode) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Nilai getBySiswaMataPelajaran(String nis, String kode) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Nilai nilai = null;
+        PreparedStatement prepareStatement = null;
+        ResultSet result = null;
+        try {
+            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_SISWA_MATA_PELAJARAN);
+            prepareStatement.setString(1, nis);
+            prepareStatement.setString(2, kode);
+
+            result = prepareStatement.executeQuery();
+            SiswaService ss = new SiswaService();
+            MataPelajaranService mps = new MataPelajaranService();
+            if (result.next()) {
+                nilai = new Nilai();
+                Siswa siswa = ss.getByNis(result.getString("nis_siswa"));
+                MataPelajaran mapel = mps.getByKode(result.getString("kode_mata_pelajaran"));
+
+                nilai.setIdNilai(result.getInt("id_nilai"));
+                nilai.setSiswa(siswa);
+                nilai.setMataPelajaran(mapel);
+                nilai.setNilaiTugas(result.getDouble("nilai_tugas"));
+                nilai.setNilaiKuis(result.getDouble("nilai_kuis"));
+                nilai.setNilaiUTS(result.getDouble("nilai_uts"));
+                nilai.setNilaiUAS(result.getDouble("nilai_uas"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NilaiService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            try {
+                if (prepareStatement != null) {
+                    prepareStatement.close();
+                }
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(NilaiService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return nilai;
     }
 }
