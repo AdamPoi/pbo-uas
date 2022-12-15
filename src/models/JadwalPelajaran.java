@@ -16,7 +16,7 @@ public class JadwalPelajaran {
     private String hari;
     private Guru guru;
     private Kelas kelas;
-    private Siswa[] listSiswa;
+    private MataPelajaran mapel;
 
     public String getKodeJadwal() {
         return kodeJadwal;
@@ -66,12 +66,12 @@ public class JadwalPelajaran {
         this.kelas = kelas;
     }
 
-    public Siswa[] getListSiswa() {
-        return listSiswa;
+    public MataPelajaran getMapel() {
+        return mapel;
     }
 
-    public void setListSiswa(Siswa[] listSiswa) {
-        this.listSiswa = listSiswa;
+    public void setMapel(MataPelajaran mapel) {
+        this.mapel = mapel;
     }
 
 }

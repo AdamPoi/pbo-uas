@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import models.Guru;
 import models.JadwalPelajaran;
 import models.Kelas;
+import models.MataPelajaran;
 import utils.DBConnection;
 
 /**
@@ -26,8 +27,8 @@ import utils.DBConnection;
 public class JadwalPelajaranService implements JadwalPelajaranDao {
 
     private final Connection connection;
-    private final String SQL_INSERT = "INSERT INTO jadwal_pelajaran (kode_jadwal, hari, nip_guru, kode_kelas,waktu_mulai,waktu_selesai) VALUES (?,?,?,?,?,?)";
-    private final String SQL_UPDATE = "UPDATE jadwal_pelajaran SET hari=?, nip_guru=?, kode_kelas=?, waktu_mulai=?,waktu_selesai=? WHERE kode_jadwal=?";
+    private final String SQL_INSERT = "INSERT INTO jadwal_pelajaran (kode_jadwal, hari, nip_guru, kode_kelas,kode_mata_pelajaran,waktu_mulai,waktu_selesai) VALUES (?,?,?,?,?,?,?)";
+    private final String SQL_UPDATE = "UPDATE jadwal_pelajaran SET hari=?, nip_guru=?, kode_kelas=?,kode_mata_pelajaran=?, waktu_mulai=?,waktu_selesai=? WHERE kode_jadwal=?";
     private final String SQL_DELETE = "DELETE FROM jadwal_pelajaran WHERE kode_jadwal=?";
     private final String SQL_SELECT_ALL = "SELECT * FROM jadwal_pelajaran";
     private final String SQL_SELECT_BY_NIS = "SELECT * FROM jadwal_pelajaran WHERE kode_jadwal=?";
@@ -46,8 +47,9 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
             prepareStatement.setString(2, jadwalPelajaran.getHari());
             prepareStatement.setString(3, jadwalPelajaran.getGuru().getNip());
             prepareStatement.setString(4, jadwalPelajaran.getKelas().getKodeKelas());
-            prepareStatement.setInt(5, jadwalPelajaran.getWaktuMulai());
-            prepareStatement.setInt(6, jadwalPelajaran.getWaktuSelesai());
+            prepareStatement.setString(5, jadwalPelajaran.getMapel().getKodeMataPelajaran());
+            prepareStatement.setInt(6, jadwalPelajaran.getWaktuMulai());
+            prepareStatement.setInt(7, jadwalPelajaran.getWaktuSelesai());
             return prepareStatement.executeUpdate() > 0;
 
         } catch (SQLException ex) {
@@ -73,9 +75,10 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
             prepareStatement.setString(1, jadwalPelajaran.getHari());
             prepareStatement.setString(2, jadwalPelajaran.getGuru().getNip());
             prepareStatement.setString(3, jadwalPelajaran.getKelas().getKodeKelas());
-            prepareStatement.setInt(4, jadwalPelajaran.getWaktuMulai());
-            prepareStatement.setInt(5, jadwalPelajaran.getWaktuSelesai());
-            prepareStatement.setString(6, jadwalPelajaran.getKodeJadwal());
+            prepareStatement.setString(4, jadwalPelajaran.getMapel().getKodeMataPelajaran());
+            prepareStatement.setInt(5, jadwalPelajaran.getWaktuMulai());
+            prepareStatement.setInt(6, jadwalPelajaran.getWaktuSelesai());
+            prepareStatement.setString(7, jadwalPelajaran.getKodeJadwal());
 
             return prepareStatement.executeUpdate() > 0;
 
@@ -130,10 +133,12 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
                 jadwalPelajaran = new JadwalPelajaran();
                 Guru guru = new GuruService().getByNip(result.getString("nip_guru"));
                 Kelas kelas = new KelasService().getByKode(result.getString("kode_kelas"));
+                MataPelajaran mapel = new MataPelajaranService().getByKode(result.getString("kode_mata_pelajaran"));
                 jadwalPelajaran.setKodeJadwal(result.getString("kode_jadwal"));
                 jadwalPelajaran.setHari(result.getString("hari"));
                 jadwalPelajaran.setGuru(guru);
                 jadwalPelajaran.setKelas(kelas);
+                jadwalPelajaran.setMapel(mapel);
                 jadwalPelajaran.setWaktuMulai(result.getInt("waktu_mulai"));
                 jadwalPelajaran.setWaktuSelesai(result.getInt("waktu_selesai"));
 
@@ -167,14 +172,19 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
             result = statement.executeQuery(SQL_SELECT_ALL);
             GuruService gs = new GuruService();
             KelasService ks = new KelasService();
+            MataPelajaranService mps = new MataPelajaranService();
+
             while (result.next()) {
                 JadwalPelajaran jadwalPelajaran = new JadwalPelajaran();
                 Guru guru = gs.getByNip(result.getString("nip_guru"));
                 Kelas kelas = ks.getByKode(result.getString("kode_kelas"));
+                MataPelajaran mapel = mps.getByKode(result.getString("kode_mata_pelajaran"));
+
                 jadwalPelajaran.setKodeJadwal(result.getString("kode_jadwal"));
                 jadwalPelajaran.setHari(result.getString("hari"));
                 jadwalPelajaran.setGuru(guru);
                 jadwalPelajaran.setKelas(kelas);
+                jadwalPelajaran.setMapel(mapel);
                 jadwalPelajaran.setWaktuMulai(result.getInt("waktu_mulai"));
                 jadwalPelajaran.setWaktuSelesai(result.getInt("waktu_selesai"));
                 listJadwalPelajaran.add(jadwalPelajaran);
@@ -212,10 +222,13 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
                 JadwalPelajaran jadwalPelajaran = new JadwalPelajaran();
                 Guru guru = new GuruService().getByNip(result.getString("nip_guru"));
                 Kelas kelas = new KelasService().getByKode(result.getString("kode_kelas"));
+                MataPelajaran mapel = new MataPelajaranService().getByKode(result.getString("kode_mata_pelajaran"));
+
                 jadwalPelajaran.setKodeJadwal(result.getString("kode_jadwal"));
                 jadwalPelajaran.setHari(result.getString("hari"));
                 jadwalPelajaran.setGuru(guru);
                 jadwalPelajaran.setKelas(kelas);
+                jadwalPelajaran.setMapel(mapel);
                 jadwalPelajaran.setWaktuMulai(result.getInt("waktu_mulai"));
                 jadwalPelajaran.setWaktuSelesai(result.getInt("waktu_selesai"));
                 listJadwalPelajaran.add(jadwalPelajaran);

@@ -13,9 +13,12 @@ import javax.swing.table.DefaultTableModel;
 import models.Guru;
 import models.JadwalPelajaran;
 import models.Kelas;
+import models.MataPelajaran;
 import services.GuruService;
 import services.JadwalPelajaranService;
 import services.KelasService;
+import services.MataPelajaranService;
+import utils.AuthHelper;
 
 /**
  *
@@ -29,9 +32,11 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
     private GuruService gs = new GuruService();
     private KelasService ks = new KelasService();
     private JadwalPelajaranService jps = new JadwalPelajaranService();
+    private MataPelajaranService mps = new MataPelajaranService();
 
     public FormJadwalPelajaran() {
         initComponents();
+        setComboMapel();
         setComboTingkat();
         setComboHari();
         setComboJam();
@@ -51,7 +56,18 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         cmbHari.setSelectedIndex(0);
         cmbJamMulai.setSelectedIndex(0);
         cmbJamSelesai.setSelectedIndex(0);
+        cmbMapel.setSelectedIndex(0);
+    }
 
+    public void setComboMapel() {
+        ArrayList<MataPelajaran> results = (ArrayList<MataPelajaran>) mps.getAll();
+        ArrayList<String> listMapel = new ArrayList<>();
+        listMapel.add("Pilih Mata Pelajaran");
+        for (MataPelajaran Mapel : results) {
+            listMapel.add(Mapel.getKodeMataPelajaran());
+        }
+        DefaultComboBoxModel cmbModel = new DefaultComboBoxModel(listMapel.toArray());
+        cmbMapel.setModel(cmbModel);
     }
 
     public void setComboTingkat() {
@@ -93,17 +109,18 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
     }
 
     public void tampilkanData(List<JadwalPelajaran> listJadwal) {
-        String[] kolom = {"Kode Jadwal", "Guru", "Kelas", "Hari", "Waktu Mulai", "Waktu Selesai"};
-        Object rowData[] = new Object[6];
+        String[] kolom = {"Kode Jadwal", "Guru", "Kelas", "Mata Pelajaran", "Hari", "Waktu Mulai", "Waktu Selesai"};
+        Object rowData[] = new Object[7];
         DefaultTableModel tableModel = new DefaultTableModel(new Object[][]{}, kolom);
         tblJadwalPelajaran.setModel(tableModel);
         for (JadwalPelajaran jadwal : listJadwal) {
             rowData[0] = jadwal.getKodeJadwal();
             rowData[1] = String.format("%s - %s", jadwal.getGuru().getNip(), jadwal.getGuru().getNama());
             rowData[2] = String.format("%s - %s", jadwal.getKelas().getKodeKelas(), jadwal.getKelas().getNama());
-            rowData[3] = jadwal.getHari();
-            rowData[4] = String.format("jam ke-%d, %s", jadwal.getWaktuMulai(), getWaktu(jadwal.getWaktuMulai()));
-            rowData[5] = String.format("jam ke-%d, %s", jadwal.getWaktuSelesai(),
+            rowData[3] = String.format("%s - %s", jadwal.getMapel().getKodeMataPelajaran(), jadwal.getMapel().getNama());
+            rowData[4] = jadwal.getHari();
+            rowData[5] = String.format("jam ke-%d, %s", jadwal.getWaktuMulai(), getWaktu(jadwal.getWaktuMulai()));
+            rowData[6] = String.format("jam ke-%d, %s", jadwal.getWaktuSelesai(),
                     getWaktu(jadwal.getWaktuSelesai())
             );
             ((DefaultTableModel) tblJadwalPelajaran.getModel()).addRow(rowData);
@@ -120,13 +137,17 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Kode Jadwal Pelajaran belum diisi !");
             txtKodeJadwal.requestFocus();
             return false;
-        } else if (txtNipGuru.getText().isEmpty()) {
+        } else if (txtNipGuru.getText().isEmpty() && lblGuru.equals("Pengajar")) {
             JOptionPane.showMessageDialog(null, "NIP guru belum diisi !");
             txtNipGuru.requestFocus();
             return false;
         } else if (cmbKelas.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Kode Kelas belum diisi !");
+            JOptionPane.showMessageDialog(null, "Kelas belum diisi !");
             cmbKelas.requestFocus();
+            return false;
+        } else if (cmbMapel.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Mata Pelajaran belum diisi !");
+            cmbMapel.requestFocus();
             return false;
         } else if (cmbHari.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Hari belum diisi !");
@@ -180,6 +201,8 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         txtNipGuru = new javax.swing.JTextField();
         btnCariGuru = new javax.swing.JButton();
         lblGuru = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cmbMapel = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         btnSiswa = new javax.swing.JButton();
@@ -268,7 +291,7 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
 
         jLabel13.setText("Hari");
 
-        jLabel1.setText("Tingkat");
+        jLabel1.setText("Mata Pelajaran");
 
         cmbKelas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbKelas.addActionListener(new java.awt.event.ActionListener() {
@@ -310,17 +333,26 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
 
         lblGuru.setText("Pengajar");
 
+        jLabel2.setText("Tingkat");
+
+        cmbMapel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbMapel.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbMapelItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                        .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,51 +360,63 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                             .addComponent(jLabel13)
                             .addComponent(jLabel7))
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cmbHari, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cmbJamMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblJamMulai)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbJamSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblJamSelesai))
-                            .addComponent(cmbKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cmbHari, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cmbJamMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblJamMulai)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cmbJamSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblJamSelesai)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmbKelas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(330, 330, 330))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel1))
-                        .addGap(71, 71, 71)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(64, 64, 64)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNipGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCariGuru)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblGuru))
-                            .addComponent(cmbTingkat, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKodeJadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTambahBaru, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(16, 16, 16))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
-                    .addContainerGap()))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtNipGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCariGuru)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblGuru))
+                                    .addComponent(txtKodeJadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnTambahBaru, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbMapel, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbTingkat, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(32, 32, 32))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel10)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,15 +429,19 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                             .addComponent(btnCariGuru)
                             .addComponent(lblGuru))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbTingkat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnTambahBaru)
                         .addGap(18, 18, 18)
                         .addComponent(btnSimpan)
                         .addGap(18, 18, 18)
-                        .addComponent(btnHapus)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnHapus)
+                            .addComponent(cmbMapel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbTingkat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -402,7 +450,7 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(cmbHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(cmbJamMulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,18 +458,13 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                     .addComponent(cmbJamSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(lblJamMulai))
-                .addGap(35, 35, 35)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCari))
-                .addGap(44, 44, 44)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(jLabel10)
-                    .addContainerGap(555, Short.MAX_VALUE)))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
@@ -433,16 +476,46 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         jLabel9.setText("MAIN MENU");
 
         btnSiswa.setText("SISWA");
+        btnSiswa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiswaActionPerformed(evt);
+            }
+        });
 
         btnMataPelajaran.setText("MATA PELAJARAN");
+        btnMataPelajaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMataPelajaranActionPerformed(evt);
+            }
+        });
 
         btnJadwalPelajaran.setText("JADWAL PELAJARAN");
+        btnJadwalPelajaran.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJadwalPelajaranActionPerformed(evt);
+            }
+        });
 
         btnPenilaian.setText("PENILAIAN");
+        btnPenilaian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPenilaianActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setText("LOG OUT");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
 
         btnGuru.setText("GURU");
+        btnGuru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuruActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -466,9 +539,9 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel9)
-                .addGap(44, 44, 44)
+                .addGap(32, 32, 32)
                 .addComponent(btnSiswa)
                 .addGap(24, 24, 24)
                 .addComponent(btnGuru)
@@ -478,7 +551,7 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                 .addComponent(btnMataPelajaran)
                 .addGap(24, 24, 24)
                 .addComponent(btnPenilaian)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
                 .addGap(32, 32, 32))
         );
@@ -532,9 +605,9 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -546,17 +619,20 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         int row = tblJadwalPelajaran.getSelectedRow();
         String nipGuru = model.getValueAt(row, 1).toString().split("\\-")[0].trim();
         String kodeKelas = model.getValueAt(row, 2).toString().split("\\-")[0].trim();
-        String jamMulai = model.getValueAt(row, 4).toString().split("\\-")[1].split("\\,")[0].trim();
-        String jamSelesai = model.getValueAt(row, 5).toString().split("\\-")[1].split("\\,")[0].trim();
+        String kodeMapel = model.getValueAt(row, 3).toString().split("\\-")[0].trim();
+
+        String jamMulai = model.getValueAt(row, 5).toString().split("\\-")[1].split("\\,")[0].trim();
+        String jamSelesai = model.getValueAt(row, 6).toString().split("\\-")[1].split("\\,")[0].trim();
 
         txtKodeJadwal.setText(model.getValueAt(row, 0).toString());
         Guru guru = gs.getByNip(nipGuru);
         txtNipGuru.setText(nipGuru);
         lblGuru.setText(String.format("%s - %s", guru.getNip(), guru.getNama()));
+        cmbMapel.setSelectedItem(kodeMapel);
         Kelas kelas = ks.getByKode(kodeKelas);
         cmbTingkat.setSelectedItem(String.valueOf(kelas.getTingkat()));
         cmbKelas.setSelectedItem(kelas.getKodeKelas());
-        cmbHari.setSelectedItem(model.getValueAt(row, 3));
+        cmbHari.setSelectedItem(model.getValueAt(row, 4));
         cmbJamMulai.setSelectedItem(jamMulai);
         cmbJamSelesai.setSelectedItem(jamSelesai);
         lblJamMulai.setText(getWaktu(Integer.parseInt(jamMulai)));
@@ -589,9 +665,11 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         jadwal.setKodeJadwal(txtKodeJadwal.getText());
         Guru guru = gs.getByNip(txtNipGuru.getText());
         Kelas kelas = ks.getByKode(cmbKelas.getSelectedItem().toString());
+        MataPelajaran mapel = mps.getByKode(cmbMapel.getSelectedItem().toString());
 
         jadwal.setGuru(guru);
         jadwal.setKelas(kelas);
+        jadwal.setMapel(mapel);
         jadwal.setHari(cmbHari.getSelectedItem().toString());
         jadwal.setWaktuMulai(Integer.parseInt(cmbJamMulai.getSelectedItem().toString()));
         jadwal.setWaktuSelesai(Integer.parseInt(cmbJamSelesai.getSelectedItem().toString()));
@@ -636,6 +714,45 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
             setComboKelas(tingkat);
         }
     }//GEN-LAST:event_cmbTingkatItemStateChanged
+
+    private void cmbMapelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMapelItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbMapelItemStateChanged
+
+    private void btnSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiswaActionPerformed
+        FormSiswa fs = new FormSiswa();
+        this.dispose();
+        fs.show();
+    }//GEN-LAST:event_btnSiswaActionPerformed
+
+    private void btnGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuruActionPerformed
+        FormGuru form = new FormGuru();
+        this.dispose();
+        form.show();
+    }//GEN-LAST:event_btnGuruActionPerformed
+
+    private void btnJadwalPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJadwalPelajaranActionPerformed
+        kosongkanForm();
+    }//GEN-LAST:event_btnJadwalPelajaranActionPerformed
+
+    private void btnMataPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataPelajaranActionPerformed
+        FormMataPelajaran form = new FormMataPelajaran();
+        this.dispose();
+        form.show();
+    }//GEN-LAST:event_btnMataPelajaranActionPerformed
+
+    private void btnPenilaianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenilaianActionPerformed
+        FormNilai form = new FormNilai();
+        this.dispose();
+        form.show();
+    }//GEN-LAST:event_btnPenilaianActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        AuthHelper.setCurrentUSer(null);
+        FormLogin form = new FormLogin();
+        this.dispose();
+        form.show();
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -689,12 +806,14 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbJamMulai;
     private javax.swing.JComboBox<String> cmbJamSelesai;
     private javax.swing.JComboBox<String> cmbKelas;
+    private javax.swing.JComboBox<String> cmbMapel;
     private javax.swing.JComboBox<String> cmbTingkat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
