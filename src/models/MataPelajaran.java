@@ -13,14 +13,6 @@ public class MataPelajaran {
     private String kodeMataPelajaran;
     private String nama;
 
-    public MataPelajaran() {
-    }
-
-    public MataPelajaran(String kodeMataPelajaran, String nama) {
-        this.kodeMataPelajaran = kodeMataPelajaran;
-        this.nama = nama;
-    }
-
     public String getKodeMataPelajaran() {
         return kodeMataPelajaran;
     }

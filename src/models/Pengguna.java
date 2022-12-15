@@ -15,16 +15,6 @@ public class Pengguna {
     protected String alamat;
     protected String telepon;
 
-    public Pengguna() {
-    }
-
-    public Pengguna(String nama, String jenisKelamin, String alamat, String telepon) {
-        this.nama = nama;
-        this.jenisKelamin = jenisKelamin;
-        this.alamat = alamat;
-        this.telepon = telepon;
-    }
-
     public String getNama() {
         return nama;
     }

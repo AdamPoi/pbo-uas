@@ -13,15 +13,6 @@ public class Guru extends Pengguna {
     private String nip;
     private String password;
 
-    public Guru() {
-    }
-
-    public Guru(String nip, String password, String nama, String jenisKelamin, String alamat, String telepon) {
-        super(nama, jenisKelamin, alamat, telepon);
-        this.nip = nip;
-        this.password = password;
-    }
-
     public String getNip() {
         return nip;
     }

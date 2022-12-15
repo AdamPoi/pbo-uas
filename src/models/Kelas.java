@@ -17,15 +17,6 @@ public class Kelas {
     private int tingkat;
     private List<Siswa> listSiswa;
 
-    public Kelas() {
-    }
-
-    public Kelas(String kodeKelas, String nama, int tingkat) {
-        this.kodeKelas = kodeKelas;
-        this.nama = nama;
-        this.tingkat = tingkat;
-    }
-
     public List<Siswa> getListSiswa() {
         return listSiswa;
     }

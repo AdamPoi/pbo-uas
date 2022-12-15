@@ -14,16 +14,6 @@ public class Admin extends Pengguna {
     private String username;
     private String password;
 
-    public Admin() {
-    }
-
-    public Admin(String idAdmin, String username, String password, String nama, String jenisKelamin, String alamat, String telepon) {
-        super(nama, jenisKelamin, alamat, telepon);
-        this.idAdmin = idAdmin;
-        this.username = username;
-        this.password = password;
-    }
-
     public String getIdAdmin() {
         return idAdmin;
     }

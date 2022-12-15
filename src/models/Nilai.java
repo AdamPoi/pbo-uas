@@ -18,19 +18,6 @@ public class Nilai {
     private Siswa siswa;
     private MataPelajaran mataPelajaran;
 
-    public Nilai() {
-    }
-
-    public Nilai(int idNilai, double nilaiTugas, double nilaiKuis, double nilaiUTS, double nilaiUAS, Siswa siswa, MataPelajaran mataPelajaran) {
-        this.idNilai = idNilai;
-        this.nilaiTugas = nilaiTugas;
-        this.nilaiKuis = nilaiKuis;
-        this.nilaiUTS = nilaiUTS;
-        this.nilaiUAS = nilaiUAS;
-        this.siswa = siswa;
-        this.mataPelajaran = mataPelajaran;
-    }
-
     public int getIdNilai() {
         return idNilai;
     }

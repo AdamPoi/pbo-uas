@@ -13,15 +13,6 @@ public class Siswa extends Pengguna {
     private String nis;
     private JadwalPelajaran[] listJadwalPelajaran;
 
-    public Siswa() {
-    }
-
-    public Siswa(String nis, JadwalPelajaran[] listJadwalPelajaran, String nama, String jenisKelamin, String alamat, String telepon) {
-        super(nama, jenisKelamin, alamat, telepon);
-        this.nis = nis;
-        this.listJadwalPelajaran = listJadwalPelajaran;
-    }
-
     public String getNis() {
         return nis;
     }
