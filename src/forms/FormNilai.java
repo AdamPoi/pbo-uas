@@ -42,7 +42,7 @@ public class FormNilai extends javax.swing.JFrame {
     public FormNilai() {
         initComponents();
         setLocationRelativeTo(this);
-//        txtIdNilai.setVisible(false);
+        txtIdNilai.setVisible(false);
         setComboMapel();
 
         tampilkanData();
@@ -230,6 +230,7 @@ public class FormNilai extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cmbMapel = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        btnCetak = new javax.swing.JButton();
         lblMapel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -350,6 +351,13 @@ public class FormNilai extends javax.swing.JFrame {
 
         jLabel5.setText("Nilai Siswa");
 
+        btnCetak.setText("Cetak");
+        btnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakActionPerformed(evt);
+            }
+        });
+
         lblMapel.setText("Mata Pelajaran");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -382,9 +390,13 @@ public class FormNilai extends javax.swing.JFrame {
                                             .addComponent(jLabel3))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNilaiUAS, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4))
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(txtNilaiUAS, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnCetak))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
@@ -458,7 +470,9 @@ public class FormNilai extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNilaiUAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNilaiUAS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnCetak)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnTambahBaru)
                         .addGap(21, 21, 21)
@@ -762,6 +776,15 @@ public class FormNilai extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cmbMapelItemStateChanged
 
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
+        if (txtIdNilai.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nilai Belum Dipilih!", "Pilih Nilai", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        PrintRaport form = new PrintRaport(ns.getById(Integer.parseInt(txtIdNilai.getText())));
+        form.show();
+    }//GEN-LAST:event_btnCetakActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -800,6 +823,7 @@ public class FormNilai extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCariSiswa;
+    private javax.swing.JButton btnCetak;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambahBaru;
