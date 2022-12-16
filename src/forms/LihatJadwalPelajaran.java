@@ -5,31 +5,55 @@
  */
 package forms;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import models.Guru;
+import models.JadwalPelajaran;
+import services.JadwalPelajaranService;
 import utils.AuthHelper;
 
 /**
  *
  * @author User
  */
-public class ProfilGuru extends javax.swing.JFrame {
+public class LihatJadwalPelajaran extends javax.swing.JFrame {
 
     /**
      * Creates new form ProfilGuru
      */
-    public ProfilGuru() {
+    public LihatJadwalPelajaran() {
         initComponents();
         setLocationRelativeTo(this);
-        setData();
+        tampilkanData();
     }
 
-    private void setData() {
+    public String getWaktu(int jam) {
+        jam += 6;
+        String waktu = jam > 9 ? String.format("%d:00", jam) : String.format("0%d:00", jam);
+
+        return waktu;
+    }
+
+    private void tampilkanData() {
+        String[] kolom = {"Kode Jadwal", "Guru", "Kelas", "Mata Pelajaran", "Hari", "Waktu Mulai", "Waktu Selesai"};
+        Object rowData[] = new Object[7];
+        DefaultTableModel tableModel = new DefaultTableModel(new Object[][]{}, kolom);
         Guru guru = (Guru) AuthHelper.getCurrentUser();
-        lblTitle.setText("Selamat Datang " + guru.getNama());
-        lblNIP.setText(guru.getNip());
-        lblNama.setText(guru.getNama());
-        lblAlamat.setText(guru.getAlamat());
-        lblNomorTelepon.setText(guru.getTelepon());
+        List<JadwalPelajaran> listJadwal = new JadwalPelajaranService().getByNipGuru(guru.getNip());
+        tblJadwalPelajaran.setModel(tableModel);
+        for (JadwalPelajaran jadwal : listJadwal) {
+            rowData[0] = jadwal.getKodeJadwal();
+            rowData[1] = String.format("%s - %s", jadwal.getGuru().getNip(), jadwal.getGuru().getNama());
+            rowData[2] = String.format("%s - %s", jadwal.getKelas().getKodeKelas(), jadwal.getKelas().getNama());
+            rowData[3] = String.format("%s - %s", jadwal.getMapel().getKodeMataPelajaran(), jadwal.getMapel().getNama());
+            rowData[4] = jadwal.getHari();
+            rowData[5] = String.format("jam ke-%d, %s", jadwal.getWaktuMulai(), getWaktu(jadwal.getWaktuMulai()));
+            rowData[6] = String.format("jam ke-%d, %s", jadwal.getWaktuSelesai(),
+                    getWaktu(jadwal.getWaktuSelesai())
+            );
+            ((DefaultTableModel) tblJadwalPelajaran.getModel()).addRow(rowData);
+
+        }
     }
 
     /**
@@ -42,115 +66,63 @@ public class ProfilGuru extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblNama = new javax.swing.JLabel();
-        lblNIP = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        lblAlamat = new javax.swing.JLabel();
-        lblNomorTelepon = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblJadwalPelajaran = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         btnProfil = new javax.swing.JButton();
         btnLihatJadwalPelajaran = new javax.swing.JButton();
         btnPenilaian = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 102));
 
-        lblNama.setBackground(new java.awt.Color(255, 255, 255));
-        lblNama.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
-        lblNama.setForeground(new java.awt.Color(255, 255, 255));
-        lblNama.setText("DIGANTI NAMA");
-
-        lblNIP.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblNIP.setForeground(new java.awt.Color(255, 255, 255));
-        lblNIP.setText("DIGANTI NIP");
-
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Selamat Datang Guru");
+        lblTitle.setText("Jadwal Mengajar");
 
-        lblAlamat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblAlamat.setForeground(new java.awt.Color(255, 255, 255));
-        lblAlamat.setText("DIGANTI ALAMAT");
-
-        lblNomorTelepon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblNomorTelepon.setForeground(new java.awt.Color(255, 255, 255));
-        lblNomorTelepon.setText("DIGANTI NOMOR TELEPON");
+        tblJadwalPelajaran.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblJadwalPelajaran.setPreferredSize(new java.awt.Dimension(320, 80));
+        jScrollPane1.setViewportView(tblJadwalPelajaran);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNomorTelepon)
-                    .addComponent(lblNIP)
-                    .addComponent(lblNama)
-                    .addComponent(lblAlamat))
-                .addGap(0, 288, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(lblNama)
-                .addGap(41, 41, 41)
-                .addComponent(lblNIP)
-                .addGap(30, 30, 30)
-                .addComponent(lblAlamat)
-                .addGap(30, 30, 30)
-                .addComponent(lblNomorTelepon)
-                .addContainerGap(149, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(lblTitle)
-                    .addContainerGap(405, Short.MAX_VALUE)))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 25)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("SMK NEGERI 1");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 25)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("GRYFFINDOR");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(lblTitle)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
@@ -226,12 +198,44 @@ public class ProfilGuru extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
         );
 
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 25)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("SMK NEGERI 1");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 25)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("GRYFFINDOR");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -242,13 +246,11 @@ public class ProfilGuru extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -260,6 +262,7 @@ public class ProfilGuru extends javax.swing.JFrame {
             this.dispose();
             nf.show();
         }
+
     }//GEN-LAST:event_btnProfilActionPerformed
 
     private void btnLihatJadwalPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatJadwalPelajaranActionPerformed
@@ -302,20 +305,21 @@ public class ProfilGuru extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProfilGuru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatJadwalPelajaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProfilGuru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatJadwalPelajaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProfilGuru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatJadwalPelajaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProfilGuru.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LihatJadwalPelajaran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProfilGuru().setVisible(true);
+                new LihatJadwalPelajaran().setVisible(true);
             }
         });
     }
@@ -331,10 +335,8 @@ public class ProfilGuru extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblAlamat;
-    private javax.swing.JLabel lblNIP;
-    private javax.swing.JLabel lblNama;
-    private javax.swing.JLabel lblNomorTelepon;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblJadwalPelajaran;
     // End of variables declaration//GEN-END:variables
 }

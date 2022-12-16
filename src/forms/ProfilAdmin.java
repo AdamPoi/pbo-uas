@@ -19,6 +19,7 @@ public class ProfilAdmin extends javax.swing.JFrame {
      */
     public ProfilAdmin() {
         initComponents();
+        setLocationRelativeTo(this);
         setData();
     }
 

@@ -31,7 +31,9 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
     private final String SQL_UPDATE = "UPDATE jadwal_pelajaran SET hari=?, nip_guru=?, kode_kelas=?,kode_mata_pelajaran=?, waktu_mulai=?,waktu_selesai=? WHERE kode_jadwal=?";
     private final String SQL_DELETE = "DELETE FROM jadwal_pelajaran WHERE kode_jadwal=?";
     private final String SQL_SELECT_ALL = "SELECT * FROM jadwal_pelajaran";
-    private final String SQL_SELECT_BY_NIS = "SELECT * FROM jadwal_pelajaran WHERE kode_jadwal=?";
+    private final String SQL_SELECT_BY_KODE = "SELECT * FROM jadwal_pelajaran WHERE kode_jadwal=?";
+    private final String SQL_SELECT_BY_NIP_GURU = "SELECT * FROM jadwal_pelajaran WHERE nip_guru=?";
+
     private final String SQL_SEARCH = "SELECT * FROM jadwal_pelajaran WHERE kode_jadwal LIKE ?";
 
     public JadwalPelajaranService() {
@@ -126,7 +128,7 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
         ResultSet result = null;
         JadwalPelajaran jadwalPelajaran = null;
         try {
-            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_NIS);
+            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_KODE);
             prepareStatement.setString(1, kode);
             result = prepareStatement.executeQuery();
             if (result.next()) {
@@ -216,6 +218,50 @@ public class JadwalPelajaranService implements JadwalPelajaranDao {
         try {
             prepareStatement = connection.prepareStatement(SQL_SEARCH);
             prepareStatement.setString(1, "%" + keyword + "%");
+
+            result = prepareStatement.executeQuery();
+            while (result.next()) {
+                JadwalPelajaran jadwalPelajaran = new JadwalPelajaran();
+                Guru guru = new GuruService().getByNip(result.getString("nip_guru"));
+                Kelas kelas = new KelasService().getByKode(result.getString("kode_kelas"));
+                MataPelajaran mapel = new MataPelajaranService().getByKode(result.getString("kode_mata_pelajaran"));
+
+                jadwalPelajaran.setKodeJadwal(result.getString("kode_jadwal"));
+                jadwalPelajaran.setHari(result.getString("hari"));
+                jadwalPelajaran.setGuru(guru);
+                jadwalPelajaran.setKelas(kelas);
+                jadwalPelajaran.setMapel(mapel);
+                jadwalPelajaran.setWaktuMulai(result.getInt("waktu_mulai"));
+                jadwalPelajaran.setWaktuSelesai(result.getInt("waktu_selesai"));
+                listJadwalPelajaran.add(jadwalPelajaran);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JadwalPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            try {
+                if (prepareStatement != null) {
+                    prepareStatement.close();
+                }
+                if (result != null) {
+                    result.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(JadwalPelajaranService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return listJadwalPelajaran;
+    }
+
+    @Override
+    public List<JadwalPelajaran> getByNipGuru(String nipGuru) {
+        List<JadwalPelajaran> listJadwalPelajaran = new ArrayList<>();
+        PreparedStatement prepareStatement = null;
+        ResultSet result = null;
+        try {
+            prepareStatement = connection.prepareStatement(SQL_SELECT_BY_NIP_GURU);
+            prepareStatement.setString(1, nipGuru);
 
             result = prepareStatement.executeQuery();
             while (result.next()) {

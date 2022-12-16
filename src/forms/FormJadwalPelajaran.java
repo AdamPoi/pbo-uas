@@ -63,8 +63,8 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         ArrayList<MataPelajaran> results = (ArrayList<MataPelajaran>) mps.getAll();
         ArrayList<String> listMapel = new ArrayList<>();
         listMapel.add("Pilih Mata Pelajaran");
-        for (MataPelajaran Mapel : results) {
-            listMapel.add(Mapel.getKodeMataPelajaran());
+        for (MataPelajaran mapel : results) {
+            listMapel.add(String.format("%s - %s", mapel.getKodeMataPelajaran(), mapel.getNama()));
         }
         DefaultComboBoxModel cmbModel = new DefaultComboBoxModel(listMapel.toArray());
         cmbMapel.setModel(cmbModel);
@@ -95,7 +95,7 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         ArrayList<String> listKelas = new ArrayList<>();
         listKelas.add("Pilih Kelas");
         for (Kelas kelas : results) {
-            listKelas.add(kelas.getKodeKelas());
+            listKelas.add(String.format("%s - %s", kelas.getKodeKelas(), kelas.getNama()));
         }
         DefaultComboBoxModel cmbModel = new DefaultComboBoxModel(listKelas.toArray());
         cmbKelas.setModel(cmbModel);
@@ -656,10 +656,12 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         Guru guru = gs.getByNip(nipGuru);
         txtNipGuru.setText(nipGuru);
         lblGuru.setText(String.format("%s - %s", guru.getNip(), guru.getNama()));
-        cmbMapel.setSelectedItem(kodeMapel);
+        MataPelajaran mapel = mps.getByKode(kodeMapel);
+
+        cmbMapel.setSelectedItem(String.format("%s - %s", mapel.getKodeMataPelajaran(), mapel.getNama()));
         Kelas kelas = ks.getByKode(kodeKelas);
         cmbTingkat.setSelectedItem(String.valueOf(kelas.getTingkat()));
-        cmbKelas.setSelectedItem(kelas.getKodeKelas());
+        cmbKelas.setSelectedItem(String.format("%s - %s", kelas.getKodeKelas(), kelas.getNama()));
         cmbHari.setSelectedItem(model.getValueAt(row, 4));
         cmbJamMulai.setSelectedItem(jamMulai);
         cmbJamSelesai.setSelectedItem(jamSelesai);
@@ -692,8 +694,8 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         JadwalPelajaran jadwal = new JadwalPelajaran();
         jadwal.setKodeJadwal(txtKodeJadwal.getText());
         Guru guru = gs.getByNip(txtNipGuru.getText());
-        Kelas kelas = ks.getByKode(cmbKelas.getSelectedItem().toString());
-        MataPelajaran mapel = mps.getByKode(cmbMapel.getSelectedItem().toString());
+        Kelas kelas = ks.getByKode(cmbKelas.getSelectedItem().toString().split("\\-")[0].trim());
+        MataPelajaran mapel = mps.getByKode(cmbMapel.getSelectedItem().toString().split("\\-")[0].trim());
 
         jadwal.setGuru(guru);
         jadwal.setKelas(kelas);

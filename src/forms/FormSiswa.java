@@ -55,7 +55,7 @@ public class FormSiswa extends javax.swing.JFrame {
         ArrayList<String> listKelas = new ArrayList<>();
         listKelas.add("Pilih Kelas");
         for (Kelas kelas : results) {
-            listKelas.add(kelas.getKodeKelas());
+            listKelas.add(String.format("%s - %s", kelas.getKodeKelas(), kelas.getNama()));
         }
         DefaultComboBoxModel cmbModel = new DefaultComboBoxModel(listKelas.toArray());
         cmbKelas.setModel(cmbModel);
@@ -120,7 +120,7 @@ public class FormSiswa extends javax.swing.JFrame {
 
     public void simpanKelasSiswa() {
         String nis = txtNIS.getText();
-        String kodeKelas = String.valueOf(cmbKelas.getSelectedItem());
+        String kodeKelas = String.valueOf(cmbKelas.getSelectedItem().toString().split("\\-")[0].trim());
         if (siswaService.getKelas(nis) == null) {
             kelasService.insertSiswaKelas(nis, kodeKelas);
         } else {
@@ -531,7 +531,7 @@ public class FormSiswa extends javax.swing.JFrame {
         Kelas kelas = siswaService.getKelas(model.getValueAt(row, 0).toString());
         cmbTingkat.setSelectedItem(String.valueOf(kelas.getTingkat()));
 
-        cmbKelas.setSelectedItem(kelas.getKodeKelas());
+        cmbKelas.setSelectedItem(String.format("%s - %s", kelas.getKodeKelas(), kelas.getNama()));
     }//GEN-LAST:event_tblSiswaMouseClicked
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed

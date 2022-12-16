@@ -24,6 +24,8 @@ public interface JadwalPelajaranDao {
 
     public List<JadwalPelajaran> getAll() throws SQLException;
 
+    public List<JadwalPelajaran> getByNipGuru(String nipGuru) throws SQLException;
+
     public List<JadwalPelajaran> search(String keyword) throws SQLException;
 
 }

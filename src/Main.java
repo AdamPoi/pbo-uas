@@ -1,23 +1,18 @@
+
+import forms.FormLogin;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package models;
-
 /**
  *
  * @author nyaw
  */
-public class Siswa extends Pengguna {
+public class Main {
 
-    private String nis;
-
-    public String getNis() {
-        return nis;
+    public static void main(String[] args) {
+        FormLogin fl = new FormLogin();
+        fl.show();
     }
-
-    public void setNis(String nis) {
-        this.nis = nis;
-    }
-
 }
