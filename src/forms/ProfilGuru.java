@@ -93,7 +93,7 @@ public class ProfilGuru extends javax.swing.JFrame {
                     .addComponent(lblNIP)
                     .addComponent(lblNama)
                     .addComponent(lblAlamat))
-                .addGap(0, 250, Short.MAX_VALUE))
+                .addGap(0, 294, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -111,53 +111,18 @@ public class ProfilGuru extends javax.swing.JFrame {
                 .addComponent(lblAlamat)
                 .addGap(30, 30, 30)
                 .addComponent(lblNomorTelepon)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
                     .addComponent(lblTitle)
-                    .addContainerGap(538, Short.MAX_VALUE)))
+                    .addContainerGap(405, Short.MAX_VALUE)))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 102));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 102)));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 25)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("MAIN MENU");
-
-        btnProfil.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnProfil.setText("PROFIL");
-        btnProfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProfilActionPerformed(evt);
-            }
-        });
-
-        btnLihatJadwalPelajaran.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnLihatJadwalPelajaran.setText("LIHAT JADWAL PELAJARAN");
-        btnLihatJadwalPelajaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLihatJadwalPelajaranActionPerformed(evt);
-            }
-        });
-
-        btnPenilaian.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnPenilaian.setText("PENILAIAN");
-        btnPenilaian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPenilaianActionPerformed(evt);
-            }
-        });
-
-        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnLogOut.setText("LOG OUT");
-        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogOutActionPerformed(evt);
-            }
-        });
+       
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,9 +144,9 @@ public class ProfilGuru extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel9)
-                .addGap(57, 57, 57)
+                .addGap(32, 32, 32)
                 .addComponent(btnProfil)
                 .addGap(18, 18, 18)
                 .addComponent(btnLihatJadwalPelajaran)
@@ -189,7 +154,7 @@ public class ProfilGuru extends javax.swing.JFrame {
                 .addComponent(btnPenilaian)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
-                .addGap(24, 24, 24))
+                .addGap(32, 32, 32))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -240,29 +205,43 @@ public class ProfilGuru extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
-        // TODO add your handling code here:
+        if (!(this.getClass().getSimpleName().equals("ProfilGuru"))) {
+            ProfilGuru nf = new ProfilGuru();
+            this.dispose();
+            nf.show();
+        }
+
     }//GEN-LAST:event_btnProfilActionPerformed
 
     private void btnLihatJadwalPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatJadwalPelajaranActionPerformed
-        // TODO add your handling code here:
+        FormJadwalPelajaran nf = new FormJadwalPelajaran();
+        this.dispose();
+        nf.show();
     }//GEN-LAST:event_btnLihatJadwalPelajaranActionPerformed
 
     private void btnPenilaianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenilaianActionPerformed
-        // TODO add your handling code here:
+
+        FormNilai nf = new FormNilai();
+        this.dispose();
+        nf.show();
     }//GEN-LAST:event_btnPenilaianActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
+        AuthHelper.setCurrentUSer(null);
+        FormLogin fl = new FormLogin();
+        this.dispose();
+        fl.show();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**

@@ -50,24 +50,19 @@ public class ProfilAdmin extends javax.swing.JFrame {
         lblNomorTelepon = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         lblKelamin = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        btnProfil = new javax.swing.JButton();
-        btnMataPelajaran = new javax.swing.JButton();
-        btnGuru = new javax.swing.JButton();
-        btnJadwalPelajaran = new javax.swing.JButton();
-        btnCetakRapot = new javax.swing.JButton();
-        btnLogOut = new javax.swing.JButton();
-        btnSiswa1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        lblNama1 = new javax.swing.JLabel();
-        lblIdAdmin1 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        lblAlamat1 = new javax.swing.JLabel();
-        lblNomorTelepon1 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        btnSiswa3 = new javax.swing.JButton();
+        btnMataPelajaran3 = new javax.swing.JButton();
+        btnGuru3 = new javax.swing.JButton();
+        btnJadwalPelajaran3 = new javax.swing.JButton();
+        btnLogOut3 = new javax.swing.JButton();
+        btnKelas8 = new javax.swing.JButton();
+        btnAdmin8 = new javax.swing.JButton();
+        btnProfil8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,7 +112,7 @@ public class ProfilAdmin extends javax.swing.JFrame {
                     .addComponent(lblAlamat)
                     .addComponent(lblUsername)
                     .addComponent(lblKelamin))
-                .addGap(0, 308, Short.MAX_VALUE))
+                .addGap(0, 303, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -139,118 +134,12 @@ public class ProfilAdmin extends javax.swing.JFrame {
                 .addComponent(lblAlamat)
                 .addGap(16, 16, 16)
                 .addComponent(lblNomorTelepon)
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
                     .addComponent(lblTitle)
-                    .addContainerGap(538, Short.MAX_VALUE)))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 102)));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 25)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("MAIN MENU");
-
-        btnProfil.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnProfil.setText("PROFIL");
-        btnProfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProfilActionPerformed(evt);
-            }
-        });
-
-        btnMataPelajaran.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnMataPelajaran.setText("MATA PELAJARAN");
-        btnMataPelajaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMataPelajaranActionPerformed(evt);
-            }
-        });
-
-        btnGuru.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnGuru.setText("GURU");
-        btnGuru.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuruActionPerformed(evt);
-            }
-        });
-
-        btnJadwalPelajaran.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnJadwalPelajaran.setText("JADWAL PELAJARAN");
-        btnJadwalPelajaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJadwalPelajaranActionPerformed(evt);
-            }
-        });
-
-        btnCetakRapot.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnCetakRapot.setText("CETAK RAPOT");
-        btnCetakRapot.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCetakRapotActionPerformed(evt);
-            }
-        });
-
-        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnLogOut.setText("LOG OUT");
-        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogOutActionPerformed(evt);
-            }
-        });
-
-        btnSiswa1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        btnSiswa1.setText("SISWA");
-        btnSiswa1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSiswa1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMataPelajaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnJadwalPelajaran, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCetakRapot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGuru, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSiswa1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel9)
-                .addGap(57, 57, 57)
-                .addComponent(btnProfil)
-                .addGap(18, 18, 18)
-                .addComponent(btnSiswa1)
-                .addGap(18, 18, 18)
-                .addComponent(btnGuru)
-                .addGap(18, 18, 18)
-                .addComponent(btnJadwalPelajaran)
-                .addGap(18, 18, 18)
-                .addComponent(btnMataPelajaran)
-                .addGap(18, 18, 18)
-                .addComponent(btnCetakRapot)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 889, Short.MAX_VALUE)
-                .addComponent(btnLogOut)
-                .addGap(24, 24, 24))
+                    .addContainerGap(459, Short.MAX_VALUE)))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -286,65 +175,115 @@ public class ProfilAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel15.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel15.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 102)));
 
-        lblNama1.setBackground(new java.awt.Color(255, 255, 255));
-        lblNama1.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
-        lblNama1.setForeground(new java.awt.Color(255, 255, 255));
-        lblNama1.setText("DIGANTI NAMA");
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("MAIN MENU");
 
-        lblIdAdmin1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblIdAdmin1.setForeground(new java.awt.Color(255, 255, 255));
-        lblIdAdmin1.setText("DIGANTI ID ADMIN");
+        btnSiswa3.setText("SISWA");
+        btnSiswa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiswa3ActionPerformed(evt);
+            }
+        });
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("PROFIL");
+        btnMataPelajaran3.setText("MATA PELAJARAN");
+        btnMataPelajaran3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMataPelajaran3ActionPerformed(evt);
+            }
+        });
 
-        lblAlamat1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblAlamat1.setForeground(new java.awt.Color(255, 255, 255));
-        lblAlamat1.setText("DIGANTI ALAMAT");
+        btnGuru3.setText("GURU");
+        btnGuru3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuru3ActionPerformed(evt);
+            }
+        });
 
-        lblNomorTelepon1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblNomorTelepon1.setForeground(new java.awt.Color(255, 255, 255));
-        lblNomorTelepon1.setText("DIGANTI NOMOR TELEPON");
+        btnJadwalPelajaran3.setText("JADWAL PELAJARAN");
+        btnJadwalPelajaran3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJadwalPelajaran3ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNomorTelepon1)
-                    .addComponent(lblIdAdmin1)
-                    .addComponent(lblNama1)
-                    .addComponent(lblAlamat1))
-                .addGap(0, 308, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
-                    .addContainerGap()))
+        btnLogOut3.setText("LOG OUT");
+        btnLogOut3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOut3ActionPerformed(evt);
+            }
+        });
+
+        btnKelas8.setText("KELAS");
+        btnKelas8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKelas8ActionPerformed(evt);
+            }
+        });
+
+        btnAdmin8.setText("ADMIN");
+        btnAdmin8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmin8ActionPerformed(evt);
+            }
+        });
+
+        btnProfil8.setBackground(new java.awt.Color(250, 70, 70));
+        btnProfil8.setText("PROFIL");
+        btnProfil8.setBorderPainted(false);
+        btnProfil8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfil8ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSiswa3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdmin8, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProfil8, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnMataPelajaran3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnJadwalPelajaran3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuru3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKelas8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(lblNama1)
-                .addGap(41, 41, 41)
-                .addComponent(lblIdAdmin1)
-                .addGap(30, 30, 30)
-                .addComponent(lblAlamat1)
-                .addGap(28, 28, 28)
-                .addComponent(lblNomorTelepon1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(47, 47, 47)
-                    .addComponent(jLabel13)
-                    .addContainerGap(538, Short.MAX_VALUE)))
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel33)
+                .addGap(32, 32, 32)
+                .addComponent(btnProfil8)
+                .addGap(24, 24, 24)
+                .addComponent(btnAdmin8)
+                .addGap(24, 24, 24)
+                .addComponent(btnSiswa3)
+                .addGap(24, 24, 24)
+                .addComponent(btnGuru3)
+                .addGap(24, 24, 24)
+                .addComponent(btnKelas8)
+                .addGap(24, 24, 24)
+                .addComponent(btnJadwalPelajaran3)
+                .addGap(24, 24, 24)
+                .addComponent(btnMataPelajaran3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(btnLogOut3)
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -352,13 +291,11 @@ public class ProfilAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(288, 288, 288)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,46 +304,48 @@ public class ProfilAdmin extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnProfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilActionPerformed
+    private void btnSiswa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiswa3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnProfilActionPerformed
+    }//GEN-LAST:event_btnSiswa3ActionPerformed
 
-    private void btnMataPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataPelajaranActionPerformed
+    private void btnMataPelajaran3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataPelajaran3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMataPelajaranActionPerformed
+    }//GEN-LAST:event_btnMataPelajaran3ActionPerformed
 
-    private void btnGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuruActionPerformed
+    private void btnGuru3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuru3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuruActionPerformed
+    }//GEN-LAST:event_btnGuru3ActionPerformed
 
-    private void btnJadwalPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJadwalPelajaranActionPerformed
+    private void btnJadwalPelajaran3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJadwalPelajaran3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnJadwalPelajaranActionPerformed
+    }//GEN-LAST:event_btnJadwalPelajaran3ActionPerformed
 
-    private void btnCetakRapotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakRapotActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCetakRapotActionPerformed
-
-    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+    private void btnLogOut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOut3ActionPerformed
         AuthHelper.setCurrentUSer(null);
         FormLogin fl = new FormLogin();
         this.dispose();
         fl.show();
-    }//GEN-LAST:event_btnLogOutActionPerformed
+    }//GEN-LAST:event_btnLogOut3ActionPerformed
 
-    private void btnSiswa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiswa1ActionPerformed
+    private void btnKelas8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKelas8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSiswa1ActionPerformed
+    }//GEN-LAST:event_btnKelas8ActionPerformed
+
+    private void btnAdmin8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmin8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdmin8ActionPerformed
+
+    private void btnProfil8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfil8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProfil8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -444,30 +383,25 @@ public class ProfilAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCetakRapot;
-    private javax.swing.JButton btnGuru;
-    private javax.swing.JButton btnJadwalPelajaran;
-    private javax.swing.JButton btnLogOut;
-    private javax.swing.JButton btnMataPelajaran;
-    private javax.swing.JButton btnProfil;
-    private javax.swing.JButton btnSiswa1;
+    private javax.swing.JButton btnAdmin8;
+    private javax.swing.JButton btnGuru3;
+    private javax.swing.JButton btnJadwalPelajaran3;
+    private javax.swing.JButton btnKelas8;
+    private javax.swing.JButton btnLogOut3;
+    private javax.swing.JButton btnMataPelajaran3;
+    private javax.swing.JButton btnProfil8;
+    private javax.swing.JButton btnSiswa3;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblAlamat;
-    private javax.swing.JLabel lblAlamat1;
     private javax.swing.JLabel lblIdAdmin;
-    private javax.swing.JLabel lblIdAdmin1;
     private javax.swing.JLabel lblKelamin;
     private javax.swing.JLabel lblNama;
-    private javax.swing.JLabel lblNama1;
     private javax.swing.JLabel lblNomorTelepon;
-    private javax.swing.JLabel lblNomorTelepon1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables

@@ -203,17 +203,19 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         lblGuru = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmbMapel = new javax.swing.JComboBox<>();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        btnSiswa = new javax.swing.JButton();
-        btnMataPelajaran = new javax.swing.JButton();
-        btnJadwalPelajaran = new javax.swing.JButton();
-        btnPenilaian = new javax.swing.JButton();
-        btnLogOut = new javax.swing.JButton();
-        btnGuru = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        btnSiswa1 = new javax.swing.JButton();
+        btnMataPelajaran1 = new javax.swing.JButton();
+        btnGuru1 = new javax.swing.JButton();
+        btnJadwalPelajaran1 = new javax.swing.JButton();
+        btnLogOut1 = new javax.swing.JButton();
+        btnKelas1 = new javax.swing.JButton();
+        btnAdmin1 = new javax.swing.JButton();
+        btnProfil1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -352,7 +354,7 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                        .addComponent(btnCari, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -408,7 +410,7 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -467,95 +469,6 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 102)));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("MAIN MENU");
-
-        btnSiswa.setText("SISWA");
-        btnSiswa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSiswaActionPerformed(evt);
-            }
-        });
-
-        btnMataPelajaran.setText("MATA PELAJARAN");
-        btnMataPelajaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMataPelajaranActionPerformed(evt);
-            }
-        });
-
-        btnJadwalPelajaran.setText("JADWAL PELAJARAN");
-        btnJadwalPelajaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJadwalPelajaranActionPerformed(evt);
-            }
-        });
-
-        btnPenilaian.setText("PENILAIAN");
-        btnPenilaian.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPenilaianActionPerformed(evt);
-            }
-        });
-
-        btnLogOut.setText("LOG OUT");
-        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogOutActionPerformed(evt);
-            }
-        });
-
-        btnGuru.setText("GURU");
-        btnGuru.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuruActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnMataPelajaran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnJadwalPelajaran, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPenilaian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel9)
-                .addGap(32, 32, 32)
-                .addComponent(btnSiswa)
-                .addGap(24, 24, 24)
-                .addComponent(btnGuru)
-                .addGap(24, 24, 24)
-                .addComponent(btnJadwalPelajaran)
-                .addGap(24, 24, 24)
-                .addComponent(btnMataPelajaran)
-                .addGap(24, 24, 24)
-                .addComponent(btnPenilaian)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogOut)
-                .addGap(32, 32, 32))
-        );
-
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -589,12 +502,124 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel8.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel8.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 102)));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("MAIN MENU");
+
+        btnSiswa1.setText("SISWA");
+        btnSiswa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiswa1ActionPerformed(evt);
+            }
+        });
+
+        btnMataPelajaran1.setText("MATA PELAJARAN");
+        btnMataPelajaran1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMataPelajaran1ActionPerformed(evt);
+            }
+        });
+
+        btnGuru1.setText("GURU");
+        btnGuru1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuru1ActionPerformed(evt);
+            }
+        });
+
+        btnJadwalPelajaran1.setText("JADWAL PELAJARAN");
+        btnJadwalPelajaran1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJadwalPelajaran1ActionPerformed(evt);
+            }
+        });
+
+        btnLogOut1.setText("LOG OUT");
+        btnLogOut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOut1ActionPerformed(evt);
+            }
+        });
+
+        btnKelas1.setText("KELAS");
+        btnKelas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKelas1ActionPerformed(evt);
+            }
+        });
+
+        btnAdmin1.setText("ADMIN");
+        btnAdmin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdmin1ActionPerformed(evt);
+            }
+        });
+
+        btnProfil1.setBackground(new java.awt.Color(250, 70, 70));
+        btnProfil1.setText("PROFIL");
+        btnProfil1.setBorderPainted(false);
+        btnProfil1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfil1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSiswa1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProfil1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnMataPelajaran1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnJadwalPelajaran1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuru1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKelas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel32)
+                .addGap(32, 32, 32)
+                .addComponent(btnProfil1)
+                .addGap(24, 24, 24)
+                .addComponent(btnAdmin1)
+                .addGap(24, 24, 24)
+                .addComponent(btnSiswa1)
+                .addGap(24, 24, 24)
+                .addComponent(btnGuru1)
+                .addGap(24, 24, 24)
+                .addComponent(btnKelas1)
+                .addGap(24, 24, 24)
+                .addComponent(btnJadwalPelajaran1)
+                .addGap(32, 32, 32)
+                .addComponent(btnMataPelajaran1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogOut1)
+                .addGap(32, 32, 32))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -605,9 +630,12 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -719,40 +747,68 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbMapelItemStateChanged
 
-    private void btnSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiswaActionPerformed
-        FormSiswa fs = new FormSiswa();
-        this.dispose();
-        fs.show();
-    }//GEN-LAST:event_btnSiswaActionPerformed
+    private void btnSiswa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiswa1ActionPerformed
+        if (!(this.getClass().getSimpleName().equals("FormSiswa"))) {
+            FormSiswa nf = new FormSiswa();
+            this.dispose();
+            nf.show();
+        }
+    }//GEN-LAST:event_btnSiswa1ActionPerformed
 
-    private void btnGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuruActionPerformed
-        FormGuru form = new FormGuru();
-        this.dispose();
-        form.show();
-    }//GEN-LAST:event_btnGuruActionPerformed
+    private void btnMataPelajaran1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataPelajaran1ActionPerformed
+        if (!(this.getClass().getSimpleName().equals("FormMataPelajaran"))) {
+            FormMataPelajaran nf = new FormMataPelajaran();
+            this.dispose();
+            nf.show();
+        }
+    }//GEN-LAST:event_btnMataPelajaran1ActionPerformed
 
-    private void btnJadwalPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJadwalPelajaranActionPerformed
-        kosongkanForm();
-    }//GEN-LAST:event_btnJadwalPelajaranActionPerformed
+    private void btnGuru1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuru1ActionPerformed
+        if (!(this.getClass().getSimpleName().equals("FormGuru"))) {
+            FormGuru nf = new FormGuru();
+            this.dispose();
+            nf.show();
+        }
+    }//GEN-LAST:event_btnGuru1ActionPerformed
 
-    private void btnMataPelajaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMataPelajaranActionPerformed
-        FormMataPelajaran form = new FormMataPelajaran();
-        this.dispose();
-        form.show();
-    }//GEN-LAST:event_btnMataPelajaranActionPerformed
+    private void btnJadwalPelajaran1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJadwalPelajaran1ActionPerformed
+        if (!(this.getClass().getSimpleName().equals("FormJadwalPelajaran"))) {
+            FormJadwalPelajaran nf = new FormJadwalPelajaran();
+            this.dispose();
+            nf.show();
+        }
+    }//GEN-LAST:event_btnJadwalPelajaran1ActionPerformed
 
-    private void btnPenilaianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenilaianActionPerformed
-        FormNilai form = new FormNilai();
-        this.dispose();
-        form.show();
-    }//GEN-LAST:event_btnPenilaianActionPerformed
-
-    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+    private void btnLogOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOut1ActionPerformed
         AuthHelper.setCurrentUSer(null);
-        FormLogin form = new FormLogin();
+        FormLogin fl = new FormLogin();
         this.dispose();
-        form.show();
-    }//GEN-LAST:event_btnLogOutActionPerformed
+        fl.show();
+    }//GEN-LAST:event_btnLogOut1ActionPerformed
+
+    private void btnKelas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKelas1ActionPerformed
+        if (!(this.getClass().getSimpleName().equals("FormKelas"))) {
+            FormKelas nf = new FormKelas();
+            this.dispose();
+            nf.show();
+        }
+    }//GEN-LAST:event_btnKelas1ActionPerformed
+
+    private void btnAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdmin1ActionPerformed
+        if (!(this.getClass().getSimpleName().equals("FormAdmin"))) {
+            FormAdmin nf = new FormAdmin();
+            this.dispose();
+            nf.show();
+        }
+    }//GEN-LAST:event_btnAdmin1ActionPerformed
+
+    private void btnProfil1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfil1ActionPerformed
+        if (!(this.getClass().getSimpleName().equals("ProfilAdmin"))) {
+            ProfilAdmin nf = new ProfilAdmin();
+            this.dispose();
+            nf.show();
+        }
+    }//GEN-LAST:event_btnProfil1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -791,16 +847,18 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdmin1;
     private javax.swing.JButton btnCari;
     private javax.swing.JButton btnCariGuru;
-    private javax.swing.JButton btnGuru;
+    private javax.swing.JButton btnGuru1;
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnJadwalPelajaran;
-    private javax.swing.JButton btnLogOut;
-    private javax.swing.JButton btnMataPelajaran;
-    private javax.swing.JButton btnPenilaian;
+    private javax.swing.JButton btnJadwalPelajaran1;
+    private javax.swing.JButton btnKelas1;
+    private javax.swing.JButton btnLogOut1;
+    private javax.swing.JButton btnMataPelajaran1;
+    private javax.swing.JButton btnProfil1;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JButton btnSiswa;
+    private javax.swing.JButton btnSiswa1;
     private javax.swing.JButton btnTambahBaru;
     private javax.swing.JComboBox<String> cmbHari;
     private javax.swing.JComboBox<String> cmbJamMulai;
@@ -815,14 +873,14 @@ public class FormJadwalPelajaran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblGuru;
     private javax.swing.JLabel lblJamMulai;
