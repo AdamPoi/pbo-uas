@@ -10,15 +10,15 @@ package models;
  */
 public class Admin extends Pengguna {
 
-    private String idAdmin;
+    private int idAdmin;
     private String username;
     private String password;
 
-    public String getIdAdmin() {
+    public int getIdAdmin() {
         return idAdmin;
     }
 
-    public void setIdAdmin(String idAdmin) {
+    public void setIdAdmin(int idAdmin) {
         this.idAdmin = idAdmin;
     }
 

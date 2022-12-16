@@ -24,10 +24,13 @@ public class ProfilAdmin extends javax.swing.JFrame {
 
     private void setData() {
         Admin admin = (Admin) AuthHelper.getCurrentUser();
-        lblIdAdmin.setText(admin.getIdAdmin());
-        lblNama.setText(admin.getNama());
-        lblAlamat.setText(admin.getAlamat());
-        lblNomorTelepon.setText(admin.getAlamat());
+        lblTitle.setText(String.format("Selamat Datang Admin %s Tersayang", admin.getNama()));
+        lblIdAdmin.setText("ID Admin : " + String.valueOf(admin.getIdAdmin()));
+        lblNama.setText("Nama : " + admin.getNama());
+        lblUsername.setText("Username : " + admin.getUsername());
+        lblKelamin.setText("Jenis Kelamin : " + admin.getJenisKelamin());
+        lblAlamat.setText("Alamat : " + admin.getAlamat());
+        lblNomorTelepon.setText("No. Telepon : " + admin.getAlamat());
     }
 
     /**
@@ -42,9 +45,11 @@ public class ProfilAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblNama = new javax.swing.JLabel();
         lblIdAdmin = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         lblAlamat = new javax.swing.JLabel();
         lblNomorTelepon = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
+        lblKelamin = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         btnProfil = new javax.swing.JButton();
@@ -57,6 +62,12 @@ public class ProfilAdmin extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        lblNama1 = new javax.swing.JLabel();
+        lblIdAdmin1 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lblAlamat1 = new javax.swing.JLabel();
+        lblNomorTelepon1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,10 +82,10 @@ public class ProfilAdmin extends javax.swing.JFrame {
         lblIdAdmin.setForeground(new java.awt.Color(255, 255, 255));
         lblIdAdmin.setText("DIGANTI ID ADMIN");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("PROFIL");
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Selamat Datang Admin Tersayang");
 
         lblAlamat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAlamat.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,6 +94,15 @@ public class ProfilAdmin extends javax.swing.JFrame {
         lblNomorTelepon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblNomorTelepon.setForeground(new java.awt.Color(255, 255, 255));
         lblNomorTelepon.setText("DIGANTI NOMOR TELEPON");
+
+        lblUsername.setBackground(new java.awt.Color(255, 255, 255));
+        lblUsername.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsername.setText("DIGANTI Username");
+
+        lblKelamin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblKelamin.setForeground(new java.awt.Color(255, 255, 255));
+        lblKelamin.setText("DIGANTI Kelamin");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -94,12 +114,14 @@ public class ProfilAdmin extends javax.swing.JFrame {
                     .addComponent(lblNomorTelepon)
                     .addComponent(lblIdAdmin)
                     .addComponent(lblNama)
-                    .addComponent(lblAlamat))
+                    .addComponent(lblAlamat)
+                    .addComponent(lblUsername)
+                    .addComponent(lblKelamin))
                 .addGap(0, 308, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,17 +129,21 @@ public class ProfilAdmin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(135, 135, 135)
                 .addComponent(lblNama)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblUsername)
+                .addGap(16, 16, 16)
                 .addComponent(lblIdAdmin)
-                .addGap(30, 30, 30)
+                .addGap(16, 16, 16)
+                .addComponent(lblKelamin)
+                .addGap(16, 16, 16)
                 .addComponent(lblAlamat)
-                .addGap(28, 28, 28)
+                .addGap(16, 16, 16)
                 .addComponent(lblNomorTelepon)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(292, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
-                    .addComponent(jLabel10)
+                    .addComponent(lblTitle)
                     .addContainerGap(538, Short.MAX_VALUE)))
         );
 
@@ -222,7 +248,7 @@ public class ProfilAdmin extends javax.swing.JFrame {
                 .addComponent(btnMataPelajaran)
                 .addGap(18, 18, 18)
                 .addComponent(btnCetakRapot)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 889, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
                 .addGap(24, 24, 24))
         );
@@ -260,6 +286,67 @@ public class ProfilAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(255, 102, 102));
+
+        lblNama1.setBackground(new java.awt.Color(255, 255, 255));
+        lblNama1.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        lblNama1.setForeground(new java.awt.Color(255, 255, 255));
+        lblNama1.setText("DIGANTI NAMA");
+
+        lblIdAdmin1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblIdAdmin1.setForeground(new java.awt.Color(255, 255, 255));
+        lblIdAdmin1.setText("DIGANTI ID ADMIN");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("PROFIL");
+
+        lblAlamat1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblAlamat1.setForeground(new java.awt.Color(255, 255, 255));
+        lblAlamat1.setText("DIGANTI ALAMAT");
+
+        lblNomorTelepon1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblNomorTelepon1.setForeground(new java.awt.Color(255, 255, 255));
+        lblNomorTelepon1.setText("DIGANTI NOMOR TELEPON");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNomorTelepon1)
+                    .addComponent(lblIdAdmin1)
+                    .addComponent(lblNama1)
+                    .addComponent(lblAlamat1))
+                .addGap(0, 308, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(lblNama1)
+                .addGap(41, 41, 41)
+                .addComponent(lblIdAdmin1)
+                .addGap(30, 30, 30)
+                .addComponent(lblAlamat1)
+                .addGap(28, 28, 28)
+                .addComponent(lblNomorTelepon1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(47, 47, 47)
+                    .addComponent(jLabel13)
+                    .addContainerGap(538, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,6 +356,9 @@ public class ProfilAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(288, 288, 288)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,7 +368,10 @@ public class ProfilAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -358,16 +451,24 @@ public class ProfilAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnMataPelajaran;
     private javax.swing.JButton btnProfil;
     private javax.swing.JButton btnSiswa1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblAlamat;
+    private javax.swing.JLabel lblAlamat1;
     private javax.swing.JLabel lblIdAdmin;
+    private javax.swing.JLabel lblIdAdmin1;
+    private javax.swing.JLabel lblKelamin;
     private javax.swing.JLabel lblNama;
+    private javax.swing.JLabel lblNama1;
     private javax.swing.JLabel lblNomorTelepon;
+    private javax.swing.JLabel lblNomorTelepon1;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
 }

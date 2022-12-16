@@ -24,6 +24,7 @@ public class ProfilGuru extends javax.swing.JFrame {
 
     private void setData() {
         Guru guru = (Guru) AuthHelper.getCurrentUser();
+        lblTitle.setText("Selamat Datang " + guru.getNama());
         lblNIP.setText(guru.getNip());
         lblNama.setText(guru.getNama());
         lblAlamat.setText(guru.getAlamat());
@@ -42,7 +43,7 @@ public class ProfilGuru extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblNama = new javax.swing.JLabel();
         lblNIP = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         lblAlamat = new javax.swing.JLabel();
         lblNomorTelepon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -68,10 +69,10 @@ public class ProfilGuru extends javax.swing.JFrame {
         lblNIP.setForeground(new java.awt.Color(255, 255, 255));
         lblNIP.setText("DIGANTI NIP");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("PROFIL");
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Selamat Datang Guru");
 
         lblAlamat.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAlamat.setForeground(new java.awt.Color(255, 255, 255));
@@ -96,7 +97,7 @@ public class ProfilGuru extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,7 +115,7 @@ public class ProfilGuru extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
-                    .addComponent(jLabel10)
+                    .addComponent(lblTitle)
                     .addContainerGap(538, Short.MAX_VALUE)))
         );
 
@@ -304,7 +305,6 @@ public class ProfilGuru extends javax.swing.JFrame {
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPenilaian;
     private javax.swing.JButton btnProfil;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel9;
@@ -315,5 +315,6 @@ public class ProfilGuru extends javax.swing.JFrame {
     private javax.swing.JLabel lblNIP;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblNomorTelepon;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

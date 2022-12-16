@@ -17,7 +17,7 @@ public class DBConnection {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(
-                        "jdbc:mysql://phpmyadmin.test/pbo_uas", "root", ""
+                        "jdbc:mysql://phpmyadmin.test/pbo_uas", "root", "fakyu"
                 );
                 System.out.println("");
             } catch (ClassNotFoundException | SQLException e) {

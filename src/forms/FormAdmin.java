@@ -22,7 +22,7 @@ public class FormAdmin extends javax.swing.JFrame {
      * Creates new form FormAdmin
      */
     AdminService adminService = new AdminService();
-    Admin admin;
+    Admin admin = new Admin();
 
     public FormAdmin() {
         initComponents();
@@ -63,11 +63,7 @@ public class FormAdmin extends javax.swing.JFrame {
     }
 
     public boolean validateForm() {
-        if (txtIdAdmin.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "ID Admin belum diisi !");
-            txtIdAdmin.requestFocus();
-            return false;
-        } else if (txtNamaAdmin.getText().trim().equals("")) {
+        if (txtNamaAdmin.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Nama Admin belum diisi !");
             txtNamaAdmin.requestFocus();
             return false;
@@ -196,6 +192,8 @@ public class FormAdmin extends javax.swing.JFrame {
 
         jLabel16.setText("Nomor Telepon");
 
+        txtIdAdmin.setEditable(false);
+        txtIdAdmin.setBackground(new java.awt.Color(204, 204, 204));
         txtIdAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdAdminActionPerformed(evt);
@@ -534,7 +532,7 @@ public class FormAdmin extends javax.swing.JFrame {
         int row = tblAdmin.getSelectedRow();
         String id = model.getValueAt(row, 0).toString();
         admin = adminService.getById(id);
-        txtIdAdmin.setText(admin.getIdAdmin());
+        txtIdAdmin.setText(String.valueOf(admin.getIdAdmin()));
         txtNamaAdmin.setText(admin.getNama());
         String kelamin = admin.getJenisKelamin();
 
@@ -569,7 +567,6 @@ public class FormAdmin extends javax.swing.JFrame {
             return;
         }
 
-        admin.setIdAdmin(txtIdAdmin.getText());
         admin.setNama(txtNamaAdmin.getText());
         String kelamin = "";
         if (radioPria.isSelected()) {
@@ -596,14 +593,18 @@ public class FormAdmin extends javax.swing.JFrame {
             }
             adminService.insert(admin);
         } else {
-            int result = JOptionPane.showConfirmDialog(null, "Yakin ingin mengganti password admin?", "Ganti password Admin", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE);
-            if (result == JOptionPane.YES_OPTION) {
-                adminService.update(admin);
+            if (!txtPassword.getText().isEmpty()) {
+                int result = JOptionPane.showConfirmDialog(null, "Yakin ingin mengganti password admin?", "Ganti password Admin", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (result == JOptionPane.YES_OPTION) {
+                    adminService.update(admin);
+                } else {
+                    return;
+                }
             } else {
-                return;
-            }
+                adminService.update(admin);
 
+            }
         }
         kosongkanForm();
         tampilkanData();

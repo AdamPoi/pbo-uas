@@ -44,7 +44,7 @@ public class AdminService implements AdminDao {
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(SQL_INSERT);
-            prepareStatement.setString(1, admin.getIdAdmin());
+            prepareStatement.setInt(1, admin.getIdAdmin());
             prepareStatement.setString(2, admin.getNama());
             prepareStatement.setString(3, admin.getAlamat());
             prepareStatement.setString(4, admin.getJenisKelamin());
@@ -80,7 +80,7 @@ public class AdminService implements AdminDao {
                 prepareStatement.setString(3, admin.getJenisKelamin());
                 prepareStatement.setString(4, admin.getTelepon());
                 prepareStatement.setString(5, admin.getUsername());
-                prepareStatement.setString(6, admin.getIdAdmin());
+                prepareStatement.setInt(6, admin.getIdAdmin());
             } else {
                 prepareStatement = connection.prepareStatement(SQL_UPDATE);
                 prepareStatement.setString(1, admin.getNama());
@@ -89,7 +89,7 @@ public class AdminService implements AdminDao {
                 prepareStatement.setString(4, admin.getTelepon());
                 prepareStatement.setString(5, admin.getUsername());
                 prepareStatement.setString(6, AuthHelper.getMd5(admin.getPassword()));
-                prepareStatement.setString(7, admin.getIdAdmin());
+                prepareStatement.setInt(7, admin.getIdAdmin());
 
             }
 
@@ -144,7 +144,7 @@ public class AdminService implements AdminDao {
             result = prepareStatement.executeQuery();
             if (result.next()) {
                 admin = new Admin();
-                admin.setIdAdmin(result.getString("id"));
+                admin.setIdAdmin(result.getInt("id"));
                 admin.setNama(result.getString("nama"));
                 admin.setJenisKelamin(result.getString("jenis_kelamin"));
                 admin.setAlamat(result.getString("alamat"));
@@ -181,7 +181,7 @@ public class AdminService implements AdminDao {
             result = statement.executeQuery(SQL_SELECT_ALL);
             while (result.next()) {
                 Admin admin = new Admin();
-                admin.setIdAdmin(result.getString("id"));
+                admin.setIdAdmin(result.getInt("id"));
                 admin.setNama(result.getString("nama"));
                 admin.setJenisKelamin(result.getString("jenis_kelamin"));
                 admin.setAlamat(result.getString("alamat"));
@@ -224,7 +224,7 @@ public class AdminService implements AdminDao {
             result = prepareStatement.executeQuery();
             while (result.next()) {
                 Admin admin = new Admin();
-                admin.setIdAdmin(result.getString("id"));
+                admin.setIdAdmin(result.getInt("id"));
                 admin.setNama(result.getString("nama"));
                 admin.setJenisKelamin(result.getString("jenis_kelamin"));
                 admin.setAlamat(result.getString("alamat"));
@@ -266,7 +266,7 @@ public class AdminService implements AdminDao {
             result = prepareStatement.executeQuery();
             if (result.next()) {
                 admin = new Admin();
-                admin.setIdAdmin(result.getString("id"));
+                admin.setIdAdmin(result.getInt("id"));
                 admin.setNama(result.getString("nama"));
                 admin.setJenisKelamin(result.getString("jenis_kelamin"));
                 admin.setAlamat(result.getString("alamat"));
